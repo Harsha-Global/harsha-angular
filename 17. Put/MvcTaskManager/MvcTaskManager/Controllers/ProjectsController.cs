@@ -47,24 +47,6 @@ namespace MvcTaskManager.Controllers
                 return null;
             }
         }
-
-        [HttpDelete]
-        [Route("api/projects")]
-        public int Delete(int ProjectID)
-        {
-            TaskManagerDbContext db = new TaskManagerDbContext();
-            Project existingProject = db.Projects.Where(temp => temp.ProjectID == ProjectID).FirstOrDefault();
-            if (existingProject != null)
-            {
-                db.Projects.Remove(existingProject);
-                db.SaveChanges();
-                return ProjectID;
-            }
-            else
-            {
-                return -1;
-            }
-        }
     }
 }
 
