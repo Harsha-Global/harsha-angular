@@ -8,18 +8,20 @@ import { Project } from './project';
 })
 export class ProjectsService
 {
-  constructor(private httpClient : HttpClient)
+  urlPrefix: string = "http://localhost:9090"; //make this as empty ("") if you are using asp.net core [without CORS]
+
+  constructor(private httpClient: HttpClient)
   {
   }
 
-  getAllProjects() : Observable<Project[]>
+  getAllProjects(): Observable<Project[]>
   {
-    return this.httpClient.get<Project[]>("/api/projects");
+    return this.httpClient.get<Project[]>(this.urlPrefix + "/api/projects");
   }
 
-  insertProject(newProject: Project) : Observable<Project>
+  insertProject(newProject: Project): Observable<Project>
   {
-    return this.httpClient.post<Project>("/api/projects", newProject);
+    return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject);
   }
 }
 

@@ -7,15 +7,21 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class ProjectsService {
-  constructor(private httpClient: HttpClient) {}
+export class ProjectsService
+{
+  urlPrefix: string = "http://localhost:9090"; //make this as empty ("") if you are using asp.net core [without CORS]
 
-  getAllProjects(): Observable<Project[]> {
+  constructor(private httpClient: HttpClient) { }
+
+  getAllProjects(): Observable<Project[]>
+  {
     return this.httpClient
-      .get<Project[]>('/api/projects', { responseType: 'json' })
+      .get<Project[]>(this.urlPrefix + '/api/projects', { responseType: 'json' })
       .pipe(
-        map((data: Project[]) => {
-          for (let i = 0; i < data.length; i++) {
+        map((data: Project[]) =>
+        {
+          for (let i = 0; i < data.length; i++)
+          {
             data[i].teamSize = data[i].teamSize * 100;
           }
           return data;
@@ -23,27 +29,31 @@ export class ProjectsService {
       );
   }
 
-  insertProject(newProject: Project): Observable<Project> {
-    return this.httpClient.post<Project>('/api/projects', newProject, {
+  insertProject(newProject: Project): Observable<Project>
+  {
+    return this.httpClient.post<Project>(this.urlPrefix + '/api/projects', newProject, {
       responseType: 'json',
     });
   }
 
-  updateProject(existingProject: Project): Observable<Project> {
-    return this.httpClient.put<Project>('/api/projects', existingProject, {
+  updateProject(existingProject: Project): Observable<Project>
+  {
+    return this.httpClient.put<Project>(this.urlPrefix + '/api/projects', existingProject, {
       responseType: 'json',
     });
   }
 
-  deleteProject(ProjectID: number): Observable<string> {
+  deleteProject(ProjectID: number): Observable<string>
+  {
     return this.httpClient.delete<string>(
-      '/api/projects?ProjectID=' + ProjectID
+      this.urlPrefix + '/api/projects?ProjectID=' + ProjectID
     );
   }
 
-  SearchProjects(searchBy: string, searchText: string): Observable<Project[]> {
+  SearchProjects(searchBy: string, searchText: string): Observable<Project[]>
+  {
     return this.httpClient.get<Project[]>(
-      '/api/projects/search/' + searchBy + '/' + searchText,
+      this.urlPrefix + '/api/projects/search/' + searchBy + '/' + searchText,
       { responseType: 'json' }
     );
   }

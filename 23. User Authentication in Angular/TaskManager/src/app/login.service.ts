@@ -9,22 +9,23 @@ import { map } from 'rxjs/operators';
 })
 export class LoginService
 {
-  constructor(private httpClient : HttpClient)
+  constructor(private httpClient: HttpClient)
   {
   }
 
-  currentUserName: string  = null;
+  currentUserName: any = null;
 
   public Login(loginViewModel: LoginViewModel): Observable<any>
   {
-    return this.httpClient.post<any>("/authenticate", loginViewModel, { responseType: "json" })
-    .pipe(map(user => {
-      if (user)
+    return this.httpClient.post<any>("http://localhost:9090/authenticate", loginViewModel, { responseType: "json" })
+      .pipe(map(user =>
       {
-        this.currentUserName = user.userName;
-      }
-      return user;
-    }));
+        if (user)
+        {
+          this.currentUserName = user.userName;
+        }
+        return user;
+      }));
   }
 
   public Logout()

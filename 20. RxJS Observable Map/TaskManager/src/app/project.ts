@@ -1,10 +1,12 @@
-export class Project {
-  projectID: number;
-  projectName: string;
-  dateOfStart: string;
-  teamSize: number;
+export class Project
+{
+  projectID: any;
+  projectName: any;
+  dateOfStart: any;
+  teamSize: any;
 
-  constructor() {
+  constructor()
+  {
     this.projectID = 0;
     this.projectName = null;
     this.dateOfStart = null;

@@ -7,25 +7,30 @@ import { Project } from 'src/app/project';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit
+{
   projects: Project[] = [];
   newProject: Project = new Project();
   editProject: Project = new Project();
-  editIndex: number = null;
+  editIndex: any = null;
   deleteProject: Project = new Project();
-  deleteIndex: number = null;
+  deleteIndex: any = null;
 
-  constructor(private projectsService: ProjectsService) {}
+  constructor(private projectsService: ProjectsService) { }
 
-  ngOnInit() {
-    this.projectsService.getAllProjects().subscribe((response: Project[]) => {
+  ngOnInit()
+  {
+    this.projectsService.getAllProjects().subscribe((response: Project[]) =>
+    {
       this.projects = response;
     });
   }
 
-  onSaveClick() {
+  onSaveClick()
+  {
     this.projectsService.insertProject(this.newProject).subscribe(
-      (response) => {
+      (response) =>
+      {
         //Add Project to Grid
         var p: Project = new Project();
         p.projectID = response.projectID;
@@ -40,13 +45,15 @@ export class ProjectsComponent implements OnInit {
         this.newProject.dateOfStart = null;
         this.newProject.teamSize = null;
       },
-      (error) => {
+      (error) =>
+      {
         console.log(error);
       }
     );
   }
 
-  onEditClick(event, index: number) {
+  onEditClick(event: any, index: number)
+  {
     this.editProject.projectID = this.projects[index].projectID;
     this.editProject.projectName = this.projects[index].projectName;
     this.editProject.dateOfStart = this.projects[index].dateOfStart;
@@ -54,9 +61,11 @@ export class ProjectsComponent implements OnInit {
     this.editIndex = index;
   }
 
-  onUpdateClick() {
+  onUpdateClick()
+  {
     this.projectsService.updateProject(this.editProject).subscribe(
-      (response: Project) => {
+      (response: Project) =>
+      {
         var p: Project = new Project();
         p.projectID = response.projectID;
         p.projectName = response.projectName;
@@ -69,7 +78,8 @@ export class ProjectsComponent implements OnInit {
         this.editProject.dateOfStart = null;
         this.editProject.teamSize = null;
       },
-      (error) => {
+      (error) =>
+      {
         console.log(error);
       }
     );

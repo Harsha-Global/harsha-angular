@@ -10,4 +10,4 @@ import { AboutComponent } from './about/about.component';
   exports: [DashboardComponent, MyProfileComponent, AboutComponent],
   providers: [],
 })
-export class AdminModule {}
+export class AdminModule { }

@@ -1,9 +1,9 @@
 export class Project
 {
-    projectID: number;
-    projectName: string;
-    dateOfStart: string;
-    teamSize: number;
+    projectID: any;
+    projectName: any;
+    dateOfStart: any;
+    teamSize: any;
 
     constructor()
     {

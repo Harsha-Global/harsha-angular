@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit
   loginViewModel: LoginViewModel = new LoginViewModel();
   loginError: string = "";
 
-  constructor(private loginService: LoginService, private router : Router) 
+  constructor(private loginService: LoginService, private router: Router) 
   {
   }
 
@@ -21,13 +21,15 @@ export class LoginComponent implements OnInit
   {
   }
 
-  onLoginClick(event)
+  onLoginClick(event: any)
   {
     this.loginService.Login(this.loginViewModel).subscribe(
-      (response) => {
+      (response) =>
+      {
         this.router.navigateByUrl("/dashboard");
       },
-      (error) => {
+      (error) =>
+      {
         console.log(error);
         this.loginError = "Invalid Username or Password";
       },

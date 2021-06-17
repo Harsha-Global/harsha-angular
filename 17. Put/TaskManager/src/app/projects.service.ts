@@ -8,28 +8,30 @@ import { Project } from './project';
 })
 export class ProjectsService
 {
-  constructor(private httpClient : HttpClient)
+  urlPrefix: string = "http://localhost:9090"; //make this as empty ("") if you are using asp.net core [without CORS]
+
+  constructor(private httpClient: HttpClient)
   {
   }
 
-  getAllProjects() : Observable<Project[]>
+  getAllProjects(): Observable<Project[]>
   {
-    return this.httpClient.get<Project[]>("/api/projects", { responseType: "json" });
+    return this.httpClient.get<Project[]>(this.urlPrefix + "/api/projects", { responseType: "json" });
   }
 
-  insertProject(newProject: Project) : Observable<Project>
+  insertProject(newProject: Project): Observable<Project>
   {
-    return this.httpClient.post<Project>("/api/projects", newProject, { responseType: "json" });
+    return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject, { responseType: "json" });
   }
 
-  updateProject(existingProject: Project) : Observable<Project>
+  updateProject(existingProject: Project): Observable<Project>
   {
-    return this.httpClient.put<Project>("/api/projects", existingProject, { responseType: "json" });
+    return this.httpClient.put<Project>(this.urlPrefix + "/api/projects", existingProject, { responseType: "json" });
   }
 
-  deleteProject(ProjectID: number) : Observable<string>
+  deleteProject(ProjectID: number): Observable<string>
   {
-    return this.httpClient.delete<string>("/api/projects?ProjectID=" + ProjectID);
+    return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=" + ProjectID);
   }
 }
 

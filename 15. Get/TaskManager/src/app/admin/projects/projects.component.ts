@@ -9,7 +9,7 @@ import { Project } from 'src/app/project';
 })
 export class ProjectsComponent implements OnInit
 {
-  projects: Project[];
+  projects: Project[] = [];
 
   constructor(private projectsService: ProjectsService)
   {
@@ -18,7 +18,8 @@ export class ProjectsComponent implements OnInit
   ngOnInit()
   {
     this.projectsService.getAllProjects().subscribe(
-      (response: Project[]) => {
+      (response: Project[]) =>
+      {
         this.projects = response;
       }
     );

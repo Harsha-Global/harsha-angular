@@ -1,5 +1,5 @@
 export class LoginViewModel
 {
-    UserName: string;
-    Password: string;
+    UserName: string = "";
+    Password: string = "";
 }

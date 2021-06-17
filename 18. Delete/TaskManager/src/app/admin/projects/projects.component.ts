@@ -7,27 +7,33 @@ import { Project } from 'src/app/project';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit
+{
   projects: Project[] = [];
   newProject: Project = new Project();
   editProject: Project = new Project();
-  editIndex: number = null;
+  editIndex: any = null;
   deleteProject: Project = new Project();
-  deleteIndex: number = null;
+  deleteIndex: any = null;
 
-  constructor(private projectsService: ProjectsService) {
+  constructor(private projectsService: ProjectsService)
+  {
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
     this.projectsService.getAllProjects().subscribe(
-      (response: Project[]) => {
+      (response: Project[]) =>
+      {
         this.projects = response;
       }
     );
   }
 
-  onSaveClick() {
-    this.projectsService.insertProject(this.newProject).subscribe((response) => {
+  onSaveClick()
+  {
+    this.projectsService.insertProject(this.newProject).subscribe((response) =>
+    {
       //Add Project to Grid
       var p: Project = new Project();
       p.projectID = response.projectID;
@@ -41,12 +47,14 @@ export class ProjectsComponent implements OnInit {
       this.newProject.projectName = null;
       this.newProject.dateOfStart = null;
       this.newProject.teamSize = null;
-    }, (error) => {
+    }, (error) =>
+    {
       console.log(error);
     });
   }
 
-  onEditClick(event, index: number) {
+  onEditClick(event: any, index: number)
+  {
     this.editProject.projectID = this.projects[index].projectID;
     this.editProject.projectName = this.projects[index].projectName;
     this.editProject.dateOfStart = this.projects[index].dateOfStart;
@@ -54,8 +62,10 @@ export class ProjectsComponent implements OnInit {
     this.editIndex = index;
   }
 
-  onUpdateClick() {
-    this.projectsService.updateProject(this.editProject).subscribe((response: Project) => {
+  onUpdateClick()
+  {
+    this.projectsService.updateProject(this.editProject).subscribe((response: Project) =>
+    {
       var p: Project = new Project();
       p.projectID = response.projectID;
       p.projectName = response.projectName;
@@ -68,12 +78,14 @@ export class ProjectsComponent implements OnInit {
       this.editProject.dateOfStart = null;
       this.editProject.teamSize = null;
     },
-      (error) => {
+      (error) =>
+      {
         console.log(error);
       });
   }
 
-  onDeleteClick(event, index: number) {
+  onDeleteClick(event: any, index: number)
+  {
     this.deleteIndex = index;
     this.deleteProject.projectID = this.projects[index].projectID;
     this.deleteProject.projectName = this.projects[index].projectName;
@@ -81,16 +93,19 @@ export class ProjectsComponent implements OnInit {
     this.deleteProject.teamSize = this.projects[index].teamSize;
   }
 
-  onDeleteConfirmClick() {
+  onDeleteConfirmClick()
+  {
     this.projectsService.deleteProject(this.deleteProject.projectID).subscribe(
-      (response) => {
+      (response) =>
+      {
         this.projects.splice(this.deleteIndex, 1);
         this.deleteProject.projectID = null;
         this.deleteProject.projectName = null;
         this.deleteProject.teamSize = null;
         this.deleteProject.dateOfStart = null;
       },
-      (error) => {
+      (error) =>
+      {
         console.log(error);
       });
   }

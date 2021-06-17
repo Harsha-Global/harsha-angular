@@ -10,22 +10,16 @@
 <div class="row">
   <div class="col-lg-3 pb-3" style="background-color: #e9e6e6">
     <div class="row">
-      <div
-        class="col-11 text-white text-center mx-auto rounded pt-2 pb-2 font-weight-bold"
-        style="
+      <div class="col-11 text-white text-center mx-auto rounded pt-2 pb-2 font-weight-bold" style="
           background-color: #a39e9e;
           font-family: 'Arial Narrow Bold', sans-serif;
-        "
-      >
+        ">
         {{ Designation | uppercase }}
       </div>
       <div class="col-12 text-center mt-2">
         <img src="assets/user.png" width="120px" />
       </div>
-      <div
-        class="col-12 text-center pt-2 pb-2 font-weight-bold"
-        style="font-family: Tahoma"
-      >
+      <div class="col-12 text-center pt-2 pb-2 font-weight-bold" style="font-family: Tahoma">
         {{ Username | lowercase }}
       </div>
       <div class="col-12 text-center pt-2 pb-2" style="font-family: Arial">
@@ -33,52 +27,25 @@
       </div>
       <div class="col-12 mb-3">
         <ul class="list-group">
-          <li
-            class="list-group-item d-flex justify-content-between align-items-center"
-          >
+          <li class="list-group-item d-flex justify-content-between align-items-center">
             NO. OF TEAM MEMBERS
-            <span
-              class="badge badge-secondary badge-pill"
-              style="font-size: 13px"
-              >{{ NoOfTeamMembers }}</span
-            >
+            <span class="badge badge-secondary badge-pill" style="font-size: 13px">{{ NoOfTeamMembers }}</span>
           </li>
-          <li
-            class="list-group-item d-flex justify-content-between align-items-center"
-          >
+          <li class="list-group-item d-flex justify-content-between align-items-center">
             TOTAL COST OF ALL PROJECTS
-            <span
-              class="badge badge-secondary badge-pill"
-              style="font-size: 13px"
-              >$ {{ TotalCostOfAllProjects }} k</span
-            >
+            <span class="badge badge-secondary badge-pill" style="font-size: 13px">$ {{ TotalCostOfAllProjects }} k</span>
           </li>
-          <li
-            class="list-group-item d-flex justify-content-between align-items-center"
-          >
+          <li class="list-group-item d-flex justify-content-between align-items-center">
             PENDING TASKS
-            <span
-              class="badge badge-secondary badge-pill"
-              style="font-size: 13px"
-              >{{ PendingTasks }}</span
-            >
+            <span class="badge badge-secondary badge-pill" style="font-size: 13px">{{ PendingTasks }}</span>
           </li>
-          <li
-            class="list-group-item d-flex justify-content-between align-items-center"
-          >
+          <li class="list-group-item d-flex justify-content-between align-items-center">
             UPCOMING PROJECTS
-            <span
-              class="badge badge-secondary badge-pill"
-              style="font-size: 13px"
-              >{{ UpComingProjects | percent }}</span
-            >
+            <span class="badge badge-secondary badge-pill" style="font-size: 13px">{{ UpComingProjects | percent }}</span>
           </li>
         </ul>
       </div>
-      <div
-        class="col-12 text-center pt-2 pb-2"
-        style="font-family: 'Arial Narrow'"
-      >
+      <div class="col-12 text-center pt-2 pb-2" style="font-family: 'Arial Narrow'">
         CLIENTS
       </div>
       <div class="col-12">
@@ -97,34 +64,17 @@
         <div class="row mt-2">
           <div class="col-6 text-left">
             <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-              >
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                 Project A
               </button>
               <div class="dropdown-menu">
-                <a
-                  class="dropdown-item"
-                  href="#"
-                  *ngFor="let project of Projects"
-                  onclick="return false"
-                  (click)="onProjectChange($event)"
-                  >{{ project }}</a
-                >
+                <a class="dropdown-item" href="#" *ngFor="let project of Projects" onclick="return false" (click)="onProjectChange($event)">{{ project }}</a>
               </div>
             </div>
           </div>
           <div class="col-6 text-right">
             <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-              >
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                 2019
               </button>
               <div class="dropdown-menu">
@@ -132,16 +82,16 @@
                   <span [ngSwitch]="year">
                     <span *ngSwitchCase="'2019'" style="color: green">{{
                       year
-                    }}</span>
+                      }}</span>
                     <span *ngSwitchCase="'2018'" style="color: blue">{{
                       year
-                    }}</span>
+                      }}</span>
                     <span *ngSwitchCase="'2017'" style="color: red">{{
                       year
-                    }}</span>
+                      }}</span>
                     <span *ngSwitchDefault style="color: black">{{
                       year
-                    }}</span>
+                      }}</span>
                   </span>
                 </a>
               </div>
@@ -149,10 +99,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="col-11 mx-auto mt-1 text-white text-center pt-2 pb-2 mx-auto rounded font-weight-bold"
-        style="background-color: #718d97; font-family: 'Arial Narrow'"
-      >
+      <div class="col-11 mx-auto mt-1 text-white text-center pt-2 pb-2 mx-auto rounded font-weight-bold" style="background-color: #718d97; font-family: 'Arial Narrow'">
         PROJECT BRIEFING
       </div>
       <div class="col-12">
@@ -171,10 +118,7 @@
           </tr>
         </table>
       </div>
-      <div
-        class="col-11 mx-auto mt-1 text-white text-center pt-2 pb-2 mx-2 rounded font-weight-bold"
-        style="background-color: #718d97; font-family: 'Arial Narrow'"
-      >
+      <div class="col-11 mx-auto mt-1 text-white text-center pt-2 pb-2 mx-2 rounded font-weight-bold" style="background-color: #718d97; font-family: 'Arial Narrow'">
         TEAM MEMBERS SUMMARY
       </div>
       <div class="col-12">
@@ -201,46 +145,25 @@
   </div>
   <div class="col-lg-3" style="background-color: #e9e6e6">
     <div class="row">
-      <div
-        class="col-11 mx-auto mt-1 text-white text-center pt-1 pb-2 mx-2 rounded font-weight-bold"
-        style="background-color: #718d97; font-family: 'Arial Narrow'"
-      >
+      <div class="col-11 mx-auto mt-1 text-white text-center pt-1 pb-2 mx-2 rounded font-weight-bold" style="background-color: #718d97; font-family: 'Arial Narrow'">
         TEAM MEMBERS
       </div>
       <div class="col-lg-12 pt-2">
         <div class="accordion" id="accordion1">
-          <div
-            class="card"
-            *ngFor="let teamMembersGroup of TeamMembers; let i = index"
-          >
+          <div class="card" *ngFor="let teamMembersGroup of TeamMembers; let i = index">
             <div class="card-header bg-secondary" id="card1">
               <h2 class="mb-0">
-                <button
-                  class="btn btn-link text-white"
-                  type="button"
-                  data-toggle="collapse"
-                  [attr.data-target]="'#cardbody' + i"
-                >
+                <button class="btn btn-link text-white" type="button" data-toggle="collapse" [attr.data-target]="'#cardbody' + i">
                   {{ teamMembersGroup.Region }}
                 </button>
               </h2>
             </div>
-            <div
-              [id]="'cardbody' + i"
-              class="collapse"
-              data-parent="#accordion1"
-              [ngClass]="i == 0 ? 'show' : ''"
-            >
+            <div [id]="'cardbody' + i" class="collapse" data-parent="#accordion1" [ngClass]="i == 0 ? 'show' : ''">
               <div class="card-body">
-                <div
-                  *ngIf="i == 0; then firstTemplate; else secondTemplate"
-                ></div>
+                <div *ngIf="i == 0; then firstTemplate; else secondTemplate"></div>
 
                 <ng-template #firstTemplate>
-                  <div
-                    class="card"
-                    *ngFor="let member of teamMembersGroup.Members"
-                  >
+                  <div class="card" *ngFor="let member of teamMembersGroup.Members">
                     <div class="card-header bg-primary text-white">
                       #{{ member.ID }} {{ member.Name }}
                     </div>
@@ -260,11 +183,9 @@
                     <tbody>
                       <tr *ngFor="let member of teamMembersGroup.Members">
                         <td>{{ member.ID }}</td>
-                        <td
-                          [style.color]="
+                        <td [style.color]="
                             member.Status == 'Busy' ? 'red' : 'black'
-                          "
-                        >
+                          ">
                           {{ member.Name }}
                         </td>
                         <td>{{ member.Status }}</td>
