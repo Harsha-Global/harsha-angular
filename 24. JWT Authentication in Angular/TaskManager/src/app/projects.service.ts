@@ -40,22 +40,58 @@ export class ProjectsService
 
   insertProject(newProject: Project): Observable<Project>
   {
-    return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject, { responseType: "json" });
+    var currentUser = { token: "" };
+    var headers = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer ");
+    if (sessionStorage.currentUser != null)
+    {
+      currentUser = JSON.parse(sessionStorage.currentUser);
+      headers = headers.set("Authorization", "Bearer " + currentUser.token);
+    }
+
+    return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject, { headers: headers, responseType: "json" });
   }
 
   updateProject(existingProject: Project): Observable<Project>
   {
-    return this.httpClient.put<Project>(this.urlPrefix + "/api/projects", existingProject, { responseType: "json" });
+    var currentUser = { token: "" };
+    var headers = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer ");
+    if (sessionStorage.currentUser != null)
+    {
+      currentUser = JSON.parse(sessionStorage.currentUser);
+      headers = headers.set("Authorization", "Bearer " + currentUser.token);
+    }
+
+    return this.httpClient.put<Project>(this.urlPrefix + "/api/projects", existingProject, { headers: headers, responseType: "json" });
   }
 
   deleteProject(ProjectID: number): Observable<string>
   {
-    return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=" + ProjectID);
+    var currentUser = { token: "" };
+    var headers = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer ");
+    if (sessionStorage.currentUser != null)
+    {
+      currentUser = JSON.parse(sessionStorage.currentUser);
+      headers = headers.set("Authorization", "Bearer " + currentUser.token);
+    }
+
+    return this.httpClient.delete<string>(this.urlPrefix + "/api/projects?ProjectID=" + ProjectID, { headers: headers });
   }
 
   SearchProjects(searchBy: string, searchText: string): Observable<Project[]>
   {
-    return this.httpClient.get<Project[]>(this.urlPrefix + "/api/projects/search/" + searchBy + "/" + searchText, { responseType: "json" });
+    var currentUser = { token: "" };
+    var headers = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer ");
+    if (sessionStorage.currentUser != null)
+    {
+      currentUser = JSON.parse(sessionStorage.currentUser);
+      headers = headers.set("Authorization", "Bearer " + currentUser.token);
+    }
+
+    return this.httpClient.get<Project[]>(this.urlPrefix + "/api/projects/search/" + searchBy + "/" + searchText, { headers: headers, responseType: "json" });
   }
 }
 
