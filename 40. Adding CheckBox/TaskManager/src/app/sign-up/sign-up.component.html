@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-md-8 col-xl-6 mx-auto">
+    <div class="card mt-1">
+      <div class="card-header">
+        <h4>Sign Up</h4>
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="signUpForm">
+
+          <div class="form-group form-row">
+            <label for="firstName" class="col-md-4 col-form-label">First Name:</label>
+            <div class="col-md-8">
+              <input type="text" name="firstName" id="firstName" placeholder="First Name" class="form-control" formControlName="firstName">
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="lastName" class="col-md-4 col-form-label">Last Name:</label>
+            <div class="col-md-8">
+              <input type="text" name="lastName" id="lastName" placeholder="Last Name" class="form-control" formControlName="lastName">
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="email" class="col-md-4 col-form-label">Email:</label>
+            <div class="col-md-8">
+              <input type="text" name="email" id="email" placeholder="Email" class="form-control" formControlName="email">
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="mobile" class="col-md-4 col-form-label">Mobile:</label>
+            <div class="col-md-8">
+              <input type="text" name="mobile" id="mobile" placeholder="Mobile" class="form-control" formControlName="mobile">
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="dateOfBirth" class="col-md-4 col-form-label">Date of Birth:</label>
+            <div class="col-md-8">
+              <input type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Date of Birth" class="form-control" formControlName="dateOfBirth">
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label class="col-md-4 col-form-label">Gender:</label>
+            <div class="col-md-8">
+
+              <div class="form-check-label form-check-inline" *ngFor="let gender of genders">
+                <input type="radio" name="gender" [id]="gender" [value]="gender" class="form-check-input" formControlName="gender">
+                <label [for]="gender" class="form-check-label">{{gender}}</label>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label for="countryID" class="col-md-4 col-form-label">Country:</label>
+            <div class="col-md-8">
+              <select name="countryID" id="countryID" class="form-control" formControlName="countryID">
+                <option value="null">Please Select</option>
+                <option *ngFor="let country of countries" [value]="country.countryName">
+                  {{country.countryName}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group form-row">
+            <label class="col-md-4 col-form-label"></label>
+            <div class="col-md-8">
+              <input type="checkbox" name="receiveNewsLetters" id="receiveNewsLetters" value="true" class="form-check-input" formControlName="receiveNewsLetters">
+              <label for="receiveNewsLetters" class="form-check-label">Receive News Letters</label>
+            </div>
+          </div>
+
+        </form>
+
+        {{signUpForm.value | json}}
+      </div>
+
+    </div>
+  </div>
+</div>
