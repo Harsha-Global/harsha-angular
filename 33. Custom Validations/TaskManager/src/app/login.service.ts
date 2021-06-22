@@ -22,15 +22,16 @@ export class LoginService
   public Login(loginViewModel: LoginViewModel): Observable<any>
   {
     this.httpClient = new HttpClient(this.httpBackend);
-    return this.httpClient.post<any>(this.urlPrefix + "/authenticate", loginViewModel, { responseType: "json" })
-      .pipe(map(user =>
+    return this.httpClient.post<any>(this.urlPrefix + "/authenticate", loginViewModel, { responseType: "json", observe: "response" })
+      .pipe(map(response =>
       {
-        if (user)
+        if (response)
         {
-          this.currentUserName = user.userName;
-          sessionStorage.currentUser = JSON.stringify(user);
+          this.currentUserName = response.body.userName;
+          sessionStorage.currentUser = JSON.stringify(response.body);
+          sessionStorage.XSRFRequestToken = response.headers.get("XSRF-REQUEST-TOKEN");
         }
-        return user;
+        return response.body;
       }));
   }
 

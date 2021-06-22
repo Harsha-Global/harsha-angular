@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-sm bg-success navbar-dark">
+    <a class="navbar-brand" href="#">
+        Angular Task Manager
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" *ngIf="loginService.currentUserName != null">
+                <a class="nav-link" routerLink="dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="about">About</a>
+            </li>
+            <li class="nav-item" *ngIf="loginService.currentUserName != null">
+                <a class="nav-link" routerLink="projects">Projects</a>
+            </li>
+            <li class="nav-item" *ngIf="loginService.currentUserName != null">
+                <a class="nav-link" href="#">{{loginService.currentUserName}}</a>
+            </li>
+            <li class="nav-item" *ngIf="loginService.currentUserName != null">
+                <a class="nav-link" href="#" (click)="loginService.Logout()">Logout</a>
+            </li>
+            <li class="nav-item" *ngIf="loginService.currentUserName == null">
+                <a class="nav-link" routerLink="login">Login</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="search"><i class="fa fa-search"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button class="btn btn-warning my2- my-sm-0" type="button" (click)="onSearchClick()">Search</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <router-outlet></router-outlet>
+</div>
