@@ -1,0 +1,276 @@
+<h1>
+  Projects
+  <i class="fa fa-circle-o-notch fa-spin" style="font-size:34px" *ngIf="showLoading"></i>
+</h1>
+<div class="row">
+  <div class="col-xl-9 mx-auto">
+    <div class="form-group form-row">
+
+      <div class="col-2">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#newModal">Create Project</button>
+      </div>
+
+      <label for="drpSearchBy" class="col-form-label col-2 text-right">Search by:</label>
+
+      <div class="col-3">
+        <select class="form-control" id="drpSearchBy" name="SearchBy" [(ngModel)]="searchBy">
+          <option value="ProjectID">Project ID</option>
+          <option value="ProjectName">Project Name</option>
+          <option value="DateOfStart">Date of Start</option>
+          <option value="TeamSize">Team Size</option>
+        </select>
+      </div>
+
+      <label for="textSearchText" class="col-form-label col-1 text-right">Search:</label>
+
+      <div class="col-4">
+        <div class="input-group">
+          <input type="text" class="form-control" id="txtSearchText" name="SearchText" [(ngModel)]="searchText">
+          <div class="input-group-append" (click)="onSearchClick()">
+            <span class="input-group-text"><i class="fa fa-search"></i></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-xl-9 mx-auto">
+    <table class="table">
+      <thead>
+        <th>Project ID</th>
+        <th>Project Name</th>
+        <th>Date of Start</th>
+        <th>Team Size</th>
+        <th>Client Location</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects; let i = index" [ngClass]="{ 'text-muted': !project.active}">
+          <td>{{project.projectID}}</td>
+          <td>{{project.projectName}}</td>
+          <td>{{project.dateOfStart}}</td>
+          <td>{{project.teamSize}}</td>
+          <td>{{project.clientLocation.clientLocationName}}</td>
+          <td>{{project.status}}</td>
+          <td>
+            <button class="btn btn-info" (click)="onEditClick($event, i)" data-toggle="modal" data-target="#editModal">Edit</button>&nbsp;
+            <button class="btn btn-warning" (click)="onDeleteClick($event, i)" data-toggle="modal" data-target="#deleteModal">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<form>
+  <div class="modal" role="dialog" id="newModal">
+    <div class="modal-dialog">
+      <div class="modal-content" style="width:700px">
+        <div class="modal-header bg-primary text-white">
+          <div class="modal-title">New Project</div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group row">
+            <label for="txtNewProjectID" class="col-sm-4 col-form-label">Project ID</label>
+            <div class="col-sm-8">
+              <input type="text" id="txtNewProjectID" style="width:130px" class="form-control" placeholder="Project ID" name="ProjectID" [(ngModel)]="newProject.projectID">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txtNewProjectName" class="col-sm-4 col-form-label">Project Name</label>
+            <div class="col-sm-8">
+              <input type="text" id="txtNewProjectName" class="form-control" placeholder="Project Name" name="ProjectName" [(ngModel)]="newProject.projectName">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txtNewDateOfStart" class="col-sm-4 col-form-label">Date of Start</label>
+            <div class="col-sm-8">
+              <input type="date" id="txtNewDateOfStart" style="width:180px" class="form-control" placeholder="Date of Start" name="DateOfStart" [(ngModel)]="newProject.dateOfStart">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txtTeamSize" class="col-sm-4 col-form-label">Team Size</label>
+            <div class="col-sm-8">
+              <input type="text" id="txtTeamSize" style="width:150px" class="form-control" placeholder="Team Size" name="TeamSize" [(ngModel)]="newProject.teamSize">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="col-sm-4 col-form-label">&nbsp;</label>
+            <div class="col-sm-8">
+              <div class="form-check">
+                <input type="checkbox" id="chkNewActive" value="true" class="form-check-input" [(ngModel)]="newProject.active" name="active">
+                <label class="form-check-label" for="chkNewActive">Active</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="rbNewStatusInForce" class="col-sm-4">Status</label>
+            <div class="col-sm-8">
+
+              <div class="form-check form-check-inline">
+                <input type="radio" id="rbNewStatusInForce" value="In Force" class="form-check-input" name="Status" [(ngModel)]="newProject.status">
+                <label for="rbNewStatusInForce" class="form-check-label">In Force</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input type="radio" id="rbNewStatusSupport" value="Support" class="form-check-input" name="Status" [(ngModel)]="newProject.status">
+                <label for="rbNewStatusSupport" class="form-check-label">Support</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="drpNewClientLocation" class="col-sm-4 col-form-label">Client Location</label>
+            <div class="col-sm-8">
+              <select id="drpNewClientLocation" class="form-control" name="ClientLocation" [(ngModel)]="newProject.clientLocationID">
+                <option value="null">Please Select</option>
+                <option *ngFor="let clientLocation of clientLocations" [value]="clientLocation.clientLocationID">
+                  {{clientLocation.clientLocationName}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="onSaveClick()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Edit Project -->
+<form>
+  <div class="modal" role="dialog" id="editModal">
+    <div class="modal-dialog">
+      <div class="modal-content" style="width:700px">
+        <div class="modal-header">
+          <div class="modal-title">Edit Project</div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group row">
+            <label for="txtEditProjectID" class="col-sm-4 col-form-label">Project ID</label>
+            <div class="col-sm-8">
+              <input type="text" id="txtEditProjectID" style="width:130px" class="form-control-plain-text" placeholder="Project ID" name="ProjectID" [(ngModel)]="editProject.projectID" disabled="disabled">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txtEditProjectName" class="col-sm-4 col-form-label">Project Name</label>
+            <div class="col-sm-8">
+              <input type="text" id="txtEditProjectName" class="form-control" placeholder="Project Name" name="ProjectName" [(ngModel)]="editProject.projectName">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txtEditDateOfStart" class="col-sm-4 col-form-label">Date of Start</label>
+            <div class="col-sm-8">
+              <input type="date" id="txtEditDateOfStart" style="width:180px" class="form-control" placeholder="Date of Start" name="DateOfStart" [(ngModel)]="editProject.dateOfStart">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txtEditTeamSize" class="col-sm-4 col-form-label">Team Size</label>
+            <div class="col-sm-8">
+              <input type="text" id="txtEditTeamSize" style="width:150px" class="form-control" placeholder="Team Size" name="TeamSize" [(ngModel)]="editProject.teamSize">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="col-sm-4 col-form-label">&nbsp;</label>
+            <div class="col-sm-8">
+              <div class="form-check">
+                <input type="checkbox" id="chkEditActive" value="true" class="form-check-input" [(ngModel)]="editProject.active" name="active">
+                <label class="form-check-label" for="chkEditActive">Active</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="rbEditStatusInForce" class="col-sm-4">Status</label>
+            <div class="col-sm-8">
+
+              <div class="form-check form-check-inline">
+                <input type="radio" id="rbEditStatusInForce" value="In Force" class="form-check-input" name="Status" [(ngModel)]="editProject.status">
+                <label for="rbEditStatusInForce" class="form-check-label">In Force</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input type="radio" id="rbEditStatusSupport" value="Support" class="form-check-input" name="Status" [(ngModel)]="editProject.status">
+                <label for="rbEditStatusSupport" class="form-check-label">Support</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="drpEditClientLocation" class="col-sm-4 col-form-label">Client Location</label>
+            <div class="col-sm-8">
+              <select id="drpEditClientLocation" class="form-control" name="ClientLocation" [(ngModel)]="editProject.clientLocationID">
+                <option value="null">Please Select</option>
+                <option *ngFor="let clientLocation of clientLocations" [value]="clientLocation.clientLocationID">
+                  {{clientLocation.clientLocationName}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="onUpdateClick()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<!-- Delete Project -->
+<form>
+  <div class="modal" role="dialog" id="deleteModal">
+    <div class="modal-dialog">
+      <div class="modal-content" style="width:700px">
+        <div class="modal-header">
+          <div class="modal-title">Delete Project</div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="text-warning">Are you sure to delete this Project?</div>
+
+          <div class="form-group row">
+            <label for="txtDeleteProjectID" class="col-sm-4 col-form-label">Project ID</label>
+            <div class="col-sm-8">
+              <input type="text" id="txtDeleteProjectID" style="width:100px" class="form-control-plain-text" placeholder="Project ID" name="ProjectID" [(ngModel)]="deleteProject.projectID" disabled="disabled">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="txtDeleteProjectName" class="col-sm-4 col-form-label">Project Name</label>
+            <div class="col-sm-8">
+              <input type="text" id="txtDeleteProjectName" class="form-control-plain-text" placeholder="Project Name" name="ProjectName" [(ngModel)]="deleteProject.projectName" disabled="disabled">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="onDeleteConfirmClick()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
