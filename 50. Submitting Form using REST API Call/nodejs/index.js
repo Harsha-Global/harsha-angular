@@ -122,10 +122,11 @@ app.post("/register", function (req, res) {
   users = JSON.parse(fs.readFileSync(jsonfile)).users;
   var newuser = {
     ...req.body,
-    UserName:
-      req.body.personName.firstName + " " + req.body.personName.lastName,
+    UserName: req.body.email,
     Email: req.body.email,
     Password: req.body.password,
+    FirstName: req.body.firstName,
+    LastName: req.body.lastName,
     Role: "Employee",
   };
   newuser.password = "";
@@ -176,7 +177,7 @@ app.post("/authenticate", function (req, res) {
   users = JSON.parse(fs.readFileSync(jsonfile, "utf8")).users;
   user = users.find(
     (user) =>
-      user.Email == req.body.UserName && user.Password == req.body.Password
+      user.UserName == req.body.UserName && user.Password == req.body.Password
   );
   console.log("Response: ", user);
   //generate jwt token
