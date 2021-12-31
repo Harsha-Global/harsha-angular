@@ -64,7 +64,7 @@
   </div>
 </div>
 
-<form #newForm="ngForm" novalidate="novalidate" appClientLocationStatusValidator>
+<form #newForm="ngForm" novalidate="novalidate">
   <div class="modal" role="dialog" id="newModal">
     <div class="modal-dialog">
       <div class="modal-content" style="width:700px">
@@ -161,8 +161,6 @@
               </select>
 
               <span class="text-danger" *ngIf="newClientLocationID.invalid && (newClientLocationID.dirty || newClientLocationID.touched || newForm.submitted) && newClientLocationID.errors!['required']">Please client location</span>
-
-              <span class="text-danger" *ngIf="newForm.invalid && (newForm.dirty || newForm.touched || newForm.submitted) && newForm.errors!['clientLocationStatus']">Support projects are not allowed at Tokyo</span>
             </div>
           </div>
 
@@ -177,7 +175,7 @@
 </form>
 
 <!-- Edit Project -->
-<form #editForm="ngForm" novalidate="novalidate" appClientLocationStatusValidator>
+<form #editForm="ngForm" novalidate="novalidate">
   <div class="modal" role="dialog" id="editModal">
     <div class="modal-dialog">
       <div class="modal-content" style="width:700px">
@@ -273,8 +271,6 @@
               </select>
 
               <span class="text-danger" *ngIf="editClientLocationID.invalid && (editClientLocationID.dirty || editClientLocationID.touched || editForm.submitted) && editClientLocationID.errors!['required']">Please client location</span>
-
-              <span class="text-danger" *ngIf="editForm.invalid && (editForm.dirty || editForm.touched || editForm.submitted) && $any(editForm)!['clientLocationStatus']">Support projects are not allowed at Tokyo</span>
             </div>
           </div>
 

@@ -19,7 +19,7 @@ export class CanActivateGuardService implements CanActivate
 
     //console.log(this.jwtHelperService.decodeToken(token));
 
-    if (this.loginService.isAuthenticated() && this.jwtHelperService.decodeToken(token).role == route.data.expectedRole)
+    if (this.loginService.isAuthenticated() && this.jwtHelperService.decodeToken(token).role == route.data['expectedRole'])
     {
       return true; //the user can navigate to the particular route
     }
