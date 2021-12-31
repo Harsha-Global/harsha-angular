@@ -28,8 +28,8 @@ export class LoginService
         if (response)
         {
           this.currentUserName = response.body.userName;
-          sessionStorage.currentUser = JSON.stringify(response.body);
-          sessionStorage.XSRFRequestToken = response.headers.get("XSRF-REQUEST-TOKEN");
+          sessionStorage['currentUser'] = JSON.stringify(response.body);
+          sessionStorage['XSRFRequestToken'] = response.headers.get("XSRF-REQUEST-TOKEN");
         }
         return response.body;
       }));
