@@ -21,13 +21,13 @@ export class LoginService
   public Login(loginViewModel: LoginViewModel): Observable<any>
   {
     this.httpClient = new HttpClient(this.httpBackend);
-    return this.httpClient.post<any>("/authenticate", loginViewModel, { responseType: "json" })
+    return this.httpClient.post<any>(this.urlPrefix + "/authenticate", loginViewModel, { responseType: "json" })
       .pipe(map(user =>
       {
         if (user)
         {
           this.currentUserName = user.userName;
-          sessionStorage.currentUser = JSON.stringify(user);
+          sessionStorage['currentUser'] = JSON.stringify(user);
         }
         return user;
       }));

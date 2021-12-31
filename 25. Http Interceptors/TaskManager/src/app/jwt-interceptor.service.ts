@@ -14,9 +14,9 @@ export class JwtInterceptorService implements HttpInterceptor
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
   {
     var currentUser = { token: "" };
-    if (sessionStorage.currentUser != null)
+    if (sessionStorage['currentUser'] != null)
     {
-      currentUser = JSON.parse(sessionStorage.currentUser);
+      currentUser = JSON.parse(sessionStorage['currentUser']);
     }
 
     request = request.clone({

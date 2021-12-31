@@ -33,7 +33,7 @@ export class ProjectsService
   insertProject(newProject: Project): Observable<Project>
   {
     var requestHeaders = new HttpHeaders();
-    requestHeaders = requestHeaders.set("X-XSRF-TOKEN", sessionStorage.XSRFRequestToken);
+    requestHeaders = requestHeaders.set("X-XSRF-TOKEN", sessionStorage['XSRFRequestToken']);
     return this.httpClient.post<Project>(this.urlPrefix + "/api/projects", newProject, { headers: requestHeaders, responseType: "json" });
   }
 

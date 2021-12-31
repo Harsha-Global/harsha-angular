@@ -20,9 +20,9 @@ export class ProjectsService
     var currentUser = { token: "" };
     var headers = new HttpHeaders();
     headers = headers.set("Authorization", "Bearer ");
-    if (sessionStorage.currentUser != null)
+    if (sessionStorage['currentUser'] != null)
     {
-      currentUser = JSON.parse(sessionStorage.currentUser);
+      currentUser = JSON.parse(sessionStorage['currentUser']);
       headers = headers.set("Authorization", "Bearer " + currentUser.token);
     }
     return this.httpClient.get<Project[]>(this.urlPrefix + "/api/projects", { headers: headers, responseType: "json" })
@@ -43,9 +43,9 @@ export class ProjectsService
     var currentUser = { token: "" };
     var headers = new HttpHeaders();
     headers = headers.set("Authorization", "Bearer ");
-    if (sessionStorage.currentUser != null)
+    if (sessionStorage['currentUser'] != null)
     {
-      currentUser = JSON.parse(sessionStorage.currentUser);
+      currentUser = JSON.parse(sessionStorage['currentUser']);
       headers = headers.set("Authorization", "Bearer " + currentUser.token);
     }
 
@@ -57,9 +57,9 @@ export class ProjectsService
     var currentUser = { token: "" };
     var headers = new HttpHeaders();
     headers = headers.set("Authorization", "Bearer ");
-    if (sessionStorage.currentUser != null)
+    if (sessionStorage['currentUser'] != null)
     {
-      currentUser = JSON.parse(sessionStorage.currentUser);
+      currentUser = JSON.parse(sessionStorage['currentUser']);
       headers = headers.set("Authorization", "Bearer " + currentUser.token);
     }
 
@@ -71,9 +71,9 @@ export class ProjectsService
     var currentUser = { token: "" };
     var headers = new HttpHeaders();
     headers = headers.set("Authorization", "Bearer ");
-    if (sessionStorage.currentUser != null)
+    if (sessionStorage['currentUser'] != null)
     {
-      currentUser = JSON.parse(sessionStorage.currentUser);
+      currentUser = JSON.parse(sessionStorage['currentUser']);
       headers = headers.set("Authorization", "Bearer " + currentUser.token);
     }
 
@@ -85,9 +85,9 @@ export class ProjectsService
     var currentUser = { token: "" };
     var headers = new HttpHeaders();
     headers = headers.set("Authorization", "Bearer ");
-    if (sessionStorage.currentUser != null)
+    if (sessionStorage['currentUser'] != null)
     {
-      currentUser = JSON.parse(sessionStorage.currentUser);
+      currentUser = JSON.parse(sessionStorage['currentUser']);
       headers = headers.set("Authorization", "Bearer " + currentUser.token);
     }
 

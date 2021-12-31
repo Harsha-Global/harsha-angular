@@ -16,7 +16,7 @@ export class CanActivateGuardService implements CanActivate
   {
     //console.log(this.router.url);
     var token = sessionStorage.getItem("currentUser") ? JSON.parse(sessionStorage.getItem("currentUser") as string).token : null;
-    if (this.loginService.isAuthenticated() && this.jwtHelperService.decodeToken(token).role == route.data.expectedRole)
+    if (this.loginService.isAuthenticated() && this.jwtHelperService.decodeToken(token).role == route.data['expectedRole'])
     {
       return true; //the user can navigate to the particular route
     }
