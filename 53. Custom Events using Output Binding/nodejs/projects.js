@@ -82,7 +82,7 @@ function searchProjects(req, res) {
   req.params.searchby = helpers.toCamelCase(req.params.searchby || "");
   console.log(req.params);
   projects = projects.filter((project) => {
-    value = (project[req.params.searchby] || "").toUpperCase();
+    value = String(project[req.params.searchby] || "").toUpperCase();
     return value.indexOf(req.params.searchtext) >= 0;
   });
 
@@ -95,6 +95,7 @@ function getProjectByProjectID(req, res) {
   console.log(req.method, req.url);
   console.log(req.params);
   projects = JSON.parse(fs.readFileSync(jsonfile, "utf8")).projects;
+  console.log(req.params);
   projects = projects.find((project) => {
     return project["projectID"] == req.params.ProjectID;
   });
