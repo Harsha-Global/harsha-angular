@@ -39,44 +39,6 @@
       "Password": "Admin123#",
       "Role": "Admin"
     },
-    {
-      "personName": { "firstName": "raj", "lastName": "kumar" },
-      "email": "raj@gmail.com",
-      "mobile": "9876543210",
-      "dateOfBirth": "2000-06-23",
-      "password": "",
-      "confirmPassword": "Abc123",
-      "gender": "male",
-      "countryID": "133",
-      "receiveNewsLetters": true,
-      "skills": [
-        { "skillName": "c#", "skillLevel": "Professional" },
-        { "skillName": "python", "skillLevel": "Expert" }
-      ],
-      "UserName": { "firstName": "raj", "lastName": "kumar" },
-      "Email": "raj@gmail.com",
-      "Password": "Abc123",
-      "Role": "Employee"
-    },
-    {
-      "personName": { "firstName": "raj", "lastName": "kumar" },
-      "email": "raj@gmail.com",
-      "mobile": "9876543210",
-      "dateOfBirth": "2000-06-23",
-      "password": "",
-      "confirmPassword": "Abc123",
-      "gender": "male",
-      "countryID": "133",
-      "receiveNewsLetters": true,
-      "skills": [
-        { "skillName": "c#", "skillLevel": "Professional" },
-        { "skillName": "python", "skillLevel": "Expert" }
-      ],
-      "UserName": { "firstName": "raj", "lastName": "kumar" },
-      "Email": "raj@gmail.com",
-      "Password": "Abc123",
-      "Role": "Employee"
-    }
   ],
   "clientLocations": [
     { "clientLocationID": 1, "clientLocationName": "Boston" },

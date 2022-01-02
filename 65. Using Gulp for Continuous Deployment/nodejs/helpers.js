@@ -20,13 +20,15 @@ function toCamel(o) {
           origKey.charAt(0).toLowerCase() + origKey.slice(1) || origKey
         ).toString();
         value = o[origKey];
-        if (
-          value instanceof Array ||
-          (value !== null && value.constructor === Object)
-        ) {
-          value = toCamel(value);
+        if (value) {
+          if (
+            value instanceof Array ||
+            (value !== null && value.constructor === Object)
+          ) {
+            value = toCamel(value);
+          }
+          newO[newKey] = value;
         }
-        newO[newKey] = value;
       }
     }
   }
