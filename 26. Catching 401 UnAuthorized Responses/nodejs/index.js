@@ -130,10 +130,12 @@ app.post("/authenticate", function (req, res) {
     (user) =>
       user.UserName == req.body.UserName && user.Password == req.body.Password
   );
-  console.log("Response: ", user);
-  //generate jwt token
-  const token = helpers.generateAccessToken({ username: req.body.UserName });
-  if (user) res.send(helpers.toCamel({ ...user, token: token, password: "" }));
+  if (user) {
+    console.log("Response: ", user);
+    //generate jwt token
+    const token = helpers.generateAccessToken({ username: req.body.UserName });
+    res.send(helpers.toCamel({ ...user, token: token, password: "" }));
+  }
   else {
     res.status(400);
     res.send({ message: "Username or password is incorrect" });

@@ -131,7 +131,7 @@ app.get(
     req.params.searchby = helpers.toCamelCase(req.params.searchby || "");
     console.log(req.params);
     projects = projects.filter((project) => {
-     value = String(project[req.params.searchby] || "").toUpperCase();
+      value = String(project[req.params.searchby] || "").toUpperCase();
       return value.indexOf(req.params.searchtext) >= 0;
     });
 
@@ -148,20 +148,22 @@ app.post("/authenticate", function (req, res) {
     (user) =>
       user.UserName == req.body.UserName && user.Password == req.body.Password
   );
-  console.log("Response: ", user);
-  //generate jwt token
-  const token = helpers.generateAccessToken({
-    userName: user.UserName,
-    email: user.Email,
-    role: user.Role,
-  });
+  if (user) {
+    console.log("Response: ", user);
+    //generate jwt token
+    const token = helpers.generateAccessToken({
+      userName: user.UserName,
+      email: user.Email,
+      role: user.Role,
+    });
 
-  //xsrf / csrf
-  var xsrftoken = randomBytes(100).toString("base64");
-  res.header("XSRF-REQUEST-TOKEN", xsrftoken);
-  res.header("Access-Control-Expose-Headers", "XSRF-REQUEST-TOKEN");
+    //xsrf / csrf
+    var xsrftoken = randomBytes(100).toString("base64");
+    res.header("XSRF-REQUEST-TOKEN", xsrftoken);
+    res.header("Access-Control-Expose-Headers", "XSRF-REQUEST-TOKEN");
 
-  if (user) res.send(helpers.toCamel({ ...user, token: token, password: "" }));
+    res.send(helpers.toCamel({ ...user, token: token, password: "" }));
+  }
   else {
     res.status(400);
     res.send({ message: "Username or password is incorrect" });

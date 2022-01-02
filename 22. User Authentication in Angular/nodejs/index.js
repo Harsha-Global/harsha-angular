@@ -106,8 +106,10 @@ app.post("/authenticate", function (req, res) {
     (user) =>
       user.UserName == req.body.UserName && user.Password == req.body.Password
   );
-  console.log("Response: ", user);
-  if (user) res.send(helpers.toCamel({ ...user, password: "" }));
+  if (user) {
+    console.log("Response: ", user);
+    res.send(helpers.toCamel({ ...user, password: "" }));
+  }
   else {
     res.status(400);
     res.send({ message: "Username or password is incorrect" });

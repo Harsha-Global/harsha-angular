@@ -119,40 +119,46 @@ app.get("/api/countries", countries.getCountries);
 //POST /register
 app.post("/register", function (req, res) {
   console.log(req.method, req.url);
-  users = JSON.parse(fs.readFileSync(jsonfile)).users;
-  var newuser = {
-    ...req.body,
-    UserName: req.body.email,
-    Email: req.body.email,
-    Password: req.body.password,
-    FirstName: req.body.firstName,
-    LastName: req.body.lastName,
-    Role: "Employee",
-  };
-  newuser.password = "";
-  users.push(newuser);
-  fs.writeFileSync(
-    jsonfile,
-    JSON.stringify({
-      ...JSON.parse(fs.readFileSync(jsonfile)),
-      users: users,
-    }),
-    "utf8"
-  );
-  console.log("Response: ", { ...newuser, Password: "" });
-  //generate jwt token
-  const token = helpers.generateAccessToken({
-    userName: newuser.UserName,
-    email: newuser.Email,
-    role: newuser.Role,
-  });
+  if (req.body.email && req.body.password && req.body.firstName && req.body.lastName) {
+    users = JSON.parse(fs.readFileSync(jsonfile)).users;
+    var newuser = {
+      ...req.body,
+      UserName: req.body.email,
+      Email: req.body.email,
+      Password: req.body.password,
+      FirstName: req.body.firstName,
+      LastName: req.body.lastName,
+      Role: "Employee",
+    };
+    newuser.password = "";
+    users.push(newuser);
+    fs.writeFileSync(
+      jsonfile,
+      JSON.stringify({
+        ...JSON.parse(fs.readFileSync(jsonfile)),
+        users: users,
+      }),
+      "utf8"
+    );
+    console.log("Response: ", { ...newuser, Password: "" });
+    //generate jwt token
+    const token = helpers.generateAccessToken({
+      userName: newuser.UserName,
+      email: newuser.Email,
+      role: newuser.Role,
+    });
 
-  //xsrf / csrf
-  var xsrftoken = randomBytes(100).toString("base64");
-  res.header("XSRF-REQUEST-TOKEN", xsrftoken);
-  res.header("Access-Control-Expose-Headers", "XSRF-REQUEST-TOKEN");
+    //xsrf / csrf
+    var xsrftoken = randomBytes(100).toString("base64");
+    res.header("XSRF-REQUEST-TOKEN", xsrftoken);
+    res.header("Access-Control-Expose-Headers", "XSRF-REQUEST-TOKEN");
 
-  res.send(helpers.toCamel({ ...newuser, token: token, Password: "" }));
+    res.send(helpers.toCamel({ ...newuser, token: token, Password: "" }));
+  }
+  else {
+    res.status(400);
+    res.send({ message: "Email or Password or FirstName or LastName is blank" });
+  }
 });
 
 //GET /api/getUserByEmail/:Email
@@ -179,20 +185,22 @@ app.post("/authenticate", function (req, res) {
     (user) =>
       user.UserName == req.body.UserName && user.Password == req.body.Password
   );
-  console.log("Response: ", user);
-  //generate jwt token
-  const token = helpers.generateAccessToken({
-    userName: user.UserName,
-    email: user.Email,
-    role: user.Role,
-  });
+  if (user) {
+    console.log("Response: ", user);
+    //generate jwt token
+    const token = helpers.generateAccessToken({
+      userName: user.UserName,
+      email: user.Email,
+      role: user.Role,
+    });
 
-  //xsrf / csrf
-  var xsrftoken = randomBytes(100).toString("base64");
-  res.header("XSRF-REQUEST-TOKEN", xsrftoken);
-  res.header("Access-Control-Expose-Headers", "XSRF-REQUEST-TOKEN");
+    //xsrf / csrf
+    var xsrftoken = randomBytes(100).toString("base64");
+    res.header("XSRF-REQUEST-TOKEN", xsrftoken);
+    res.header("Access-Control-Expose-Headers", "XSRF-REQUEST-TOKEN");
 
-  if (user) res.send(helpers.toCamel({ ...user, token: token, password: "" }));
+    res.send(helpers.toCamel({ ...user, token: token, password: "" }));
+  }
   else {
     res.status(400);
     res.send({ message: "Username or password is incorrect" });
