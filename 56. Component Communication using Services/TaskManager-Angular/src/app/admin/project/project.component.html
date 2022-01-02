@@ -1,0 +1,33 @@
+<div class="card card-primary">
+
+  <div class="card-header">
+    <div>#{{project.projectID}}</div>
+    <h5>{{project.projectName}}</h5>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-borderless" [hidden]="projectsService.hideDetails">
+      <tr>
+        <th>Date of Start</th>
+        <td>{{project.dateOfStart}}</td>
+      </tr>
+      <tr>
+        <th>Team Size</th>
+        <td>{{project.teamSize}}</td>
+      </tr>
+      <tr>
+        <th>Client Location</th>
+        <td>{{project.clientLocation?.clientLocationName}}</td>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <td>{{project.status}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-footer">
+    <button class="btn btn-info" (click)="onEditClick($event, i)" data-toggle="modal" data-target="#editModal">Edit</button>&nbsp;
+    <button class="btn btn-warning" (click)="onDeleteClick($event, i)" data-toggle="modal" data-target="#deleteModal">Delete</button>
+  </div>
+</div>
