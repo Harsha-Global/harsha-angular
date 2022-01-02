@@ -1,0 +1,43 @@
+<div class="card card-primary">
+
+  <div class="card-header">
+    <div class="row">
+      <div class="col-11">
+        <div>#{{project.projectID}}</div>
+        <h5>{{project.projectName}}</h5>
+      </div>
+      <div class="col-1">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-borderless" [hidden]="hideDetails" #tbl>
+      <tr>
+        <th>Date of Start</th>
+        <td>{{project.dateOfStart}}</td>
+      </tr>
+      <tr>
+        <th>Team Size</th>
+        <td>
+          <span>{{project.teamSize}} </span>
+          <span class="text-info">{{project.teamSize | numberToWords}}</span>
+        </td>
+      </tr>
+      <tr>
+        <th>Client Location</th>
+        <td>{{project.clientLocation?.clientLocationName}}</td>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <td>{{project.status}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-footer">
+    <button class="btn btn-info" (click)="onEditClick($event, i)" data-toggle="modal" data-target="#editModal">Edit</button>&nbsp;
+    <button class="btn btn-warning" (click)="onDeleteClick($event, i)" data-toggle="modal" data-target="#deleteModal">Delete</button>
+  </div>
+</div>
