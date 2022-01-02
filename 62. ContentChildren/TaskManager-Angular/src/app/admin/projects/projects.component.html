@@ -49,7 +49,10 @@
 
       <div class="col-md-4" *ngFor="let project of projects; let i = index">
         <app-project #prj [currentProject]="project" [recordIndex]="i" (editClick)="onEditClick($event, i)" (deleteClick)="onDeleteClick($event, i)">
-          <app-check-box-printer #selectionBox></app-check-box-printer>
+          <app-check-box-printer #selectionBox>
+          </app-check-box-printer>
+          <app-check-box-printer #selectionBox>
+          </app-check-box-printer>
         </app-project>
       </div>
 
