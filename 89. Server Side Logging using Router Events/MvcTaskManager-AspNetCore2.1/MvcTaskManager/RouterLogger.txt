@@ -1,0 +1,5 @@
+6/25/2019, 11:07:19 PM: anonymous navigates to /
+6/25/2019, 11:08:14 PM: admin navigates to /admin/dashboard
+6/25/2019, 11:08:19 PM: admin navigates to /about
+6/25/2019, 11:08:20 PM: admin navigates to /admin/projects
+6/25/2019, 11:10:05 PM: admin navigates to /admin/dashboard
