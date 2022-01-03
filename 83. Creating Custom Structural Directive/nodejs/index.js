@@ -119,15 +119,15 @@ app.get("/api/countries", countries.getCountries);
 //POST /register
 app.post("/register", function (req, res) {
   console.log(req.method, req.url);
-  if (req.body.email && req.body.password && req.body.firstName && req.body.lastName) {
+  if (req.body.email && req.body.password) {
     users = JSON.parse(fs.readFileSync(jsonfile)).users;
     var newuser = {
       ...req.body,
       UserName: req.body.email,
       Email: req.body.email,
       Password: req.body.password,
-      FirstName: req.body.firstName,
-      LastName: req.body.lastName,
+      FirstName: req.body.personName.firstName,
+      LastName: req.body.personName.lastName,
       Role: "Employee",
     };
     newuser.password = "";

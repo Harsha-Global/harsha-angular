@@ -115,7 +115,7 @@ app.delete(
 //POST /register
 app.post("/register", function (req, res) {
   console.log(req.method, req.url);
-  if (req.body.email && req.body.password && req.body.firstName && req.body.lastName) {
+  if (req.body.email && req.body.password) {
     users = JSON.parse(fs.readFileSync(jsonfile)).users;
     var newuser = {
       ...req.body,
