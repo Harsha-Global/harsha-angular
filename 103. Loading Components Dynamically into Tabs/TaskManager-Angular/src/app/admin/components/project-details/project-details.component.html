@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-8 col-lg-6 col-xl-5 mx-auto">
+    <div class="card card-primary mb-1">
+
+      <div class="card-header">
+        <div>#{{project.projectID}}</div>
+        <h5>{{project.projectName}}</h5>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-borderless table-sm">
+          <tr>
+            <th>Date of Start</th>
+            <td>{{project.dateOfStart}}</td>
+          </tr>
+          <tr>
+            <th>Team Size</th>
+            <td>
+              <span>{{project.teamSize}} </span>
+              <span class="text-info">{{project.teamSize | numberToWords}}</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Client Location</th>
+            <td>{{project.clientLocation?.clientLocationName}}</td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td>{{project.status}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="card-footer">
+        <a class="btn btn-info" [routerLink]=" [ '/admin', 'projects' ] ">
+          Back
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
