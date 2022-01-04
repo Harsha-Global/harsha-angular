@@ -29,7 +29,7 @@ export class CountriesService {
   }
 
   deleteCountry(CountryID: number | null): Observable<string> {
-    return this.httpClient.delete<string>(this.urlPrefix + "/api/countries?CountryID=" + CountryID);
+    return this.httpClient.delete<string>(this.urlPrefix + "/api/countries?countryID=" + CountryID);
   }
 }
 

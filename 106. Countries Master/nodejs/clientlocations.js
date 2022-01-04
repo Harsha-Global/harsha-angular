@@ -16,6 +16,7 @@ function getClientLocations(req, res) {
 function postClientLocations(req, res) {
   console.log(req.method, req.url);
   clientLocations = JSON.parse(fs.readFileSync(jsonfile)).clientLocations;
+  req.body.clientLocationID = Math.max.apply(Math, clientLocations.map(function (o) { return o.clientLocationID; })) + 1;
   clientLocations.push(req.body);
   console.log("Response: ", clientLocations);
   fs.writeFileSync(
@@ -89,8 +90,26 @@ function searchClientLocations(req, res) {
   res.send(helpers.toCamel(clientLocations));
 }
 
+//GET /api/clientlocations/searchbyclientlocationid/:ClientLocationID
+function searchByClientLocationID(req, res) {
+  console.log(req.method, req.url);
+  console.log(req.params);
+  clientLocations = JSON.parse(fs.readFileSync(jsonfile, "utf8")).clientLocations;
+  console.log(req.params);
+  clientLocations = clientLocations.find((clientLocation) => {
+    return clientLocation["clientLocationID"] == req.params.ClientLocationID;
+  });
+  console.log("Response: ", clientLocations);
+  if (clientLocations) {
+    res.send(helpers.toCamel(clientLocations));
+  } else {
+    res.send(clientLocations);
+  }
+}
+
 exports.getClientLocations = getClientLocations;
 exports.postClientLocations = postClientLocations;
 exports.putClientLocations = putClientLocations;
 exports.deleteClientLocations = deleteClientLocations;
 exports.searchClientLocations = searchClientLocations;
+exports.searchByClientLocationID = searchByClientLocationID;

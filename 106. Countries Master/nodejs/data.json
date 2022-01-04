@@ -833,5 +833,51 @@
             "countryID": 71,
             "countryName": "Zimbabwe"
         }
-    ]
+    ],
+    "taskPriorities": [
+        {
+            "taskPriorityID": 1,
+            "taskPriorityName": "Urgent"
+        },
+        {
+            "taskPriorityID": 2,
+            "taskPriorityName": "Normal"
+        },
+        {
+            "taskPriorityID": 3,
+            "taskPriorityName": "Below Normal"
+        },
+        {
+            "taskPriorityID": 4,
+            "taskPriorityName": "Low"
+        },
+        {
+            "taskPriorityID": 5,
+            "taskPriorityName": "Important"
+        }
+    ],
+    "taskStatuses": [
+        {
+            "taskStatusID": 1,
+            "taskStatusName": "Holding"
+        },
+        {
+            "taskStatusID": 2,
+            "taskStatusName": "Prioritized"
+        },
+        {
+            "taskStatusID": 3,
+            "taskStatusName": "Started"
+        },
+        {
+            "taskStatusID": 4,
+            "taskStatusName": "Finished"
+        },
+        {
+            "taskStatusID": 5,
+            "taskStatusName": "Reverted"
+        }
+    ],
+    "taskStatusDetails": [],
+    "tasks": []
 }
