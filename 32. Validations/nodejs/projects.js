@@ -13,6 +13,9 @@ function getProjects(req, res) {
 function postProjects(req, res) {
   console.log(req.method, req.url);
   projects = JSON.parse(fs.readFileSync(jsonfile)).projects;
+  
+  req.body.clientLocation = JSON.parse(fs.readFileSync(jsonfile)).clientLocations.find(c => c.clientLocationID == req.body.clientLocationID);
+  
   projects.push(req.body);
   console.log("Response: ", projects);
   fs.writeFileSync(
