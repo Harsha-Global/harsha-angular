@@ -13,6 +13,7 @@ var clientlocations = require("./clientlocations");
 var countries = require("./countries");
 var taskpriorities = require("./taskpriorities");
 var taskstatuses = require("./taskstatuses");
+var tasks = require("./tasks");
 
 
 
@@ -339,3 +340,34 @@ app.post("/authenticate", function (req, res) {
     res.send({ message: "Username or password is incorrect" });
   }
 });
+
+
+//GET api/tasks
+app.get(
+  "/api/tasks",
+  [authenticateToken],
+  tasks.gettasks
+);
+
+//POST api/tasks
+app.post(
+  "/api/tasks",
+  [authenticateToken],
+  tasks.posttasks
+);
+
+//PUT api/tasks
+app.put(
+  "/api/tasks",
+  [authenticateToken],
+  tasks.puttasks
+);
+
+//DELETE api/tasks
+app.delete(
+  "/api/tasks",
+  [authenticateToken],
+  tasks.deletetasks
+);
+
+
