@@ -264,6 +264,7 @@ app.post("/register", function (req, res) {
       LastName: req.body.personName.lastName,
       Role: "Employee",
     };
+    newuser.id = Math.max.apply(Math, users.map(function (o) { return o.id; })) + 1;
     newuser.password = "";
     users.push(newuser);
     fs.writeFileSync(
@@ -300,8 +301,23 @@ app.get("/api/getUserByEmail/:Email", function (req, res) {
   console.log(req.method, req.url);
   console.log(req.params);
   users = JSON.parse(fs.readFileSync(jsonfile, "utf8")).users;
-  users = users.find((project) => {
-    return project["Email"] == req.params.Email;
+  users = users.find((us) => {
+    return us["Email"] == req.params.Email;
+  });
+  console.log("Response: ", users);
+  if (users) {
+    res.send(helpers.toCamel(users));
+  } else {
+    res.send(users);
+  }
+});
+
+//GET /api/getallemployees
+app.get("/api/getallemployees", function (req, res) {
+  console.log(req.method, req.url);
+  users = JSON.parse(fs.readFileSync(jsonfile, "utf8")).users;
+  users = users.filter((us) => {
+    return us["Role"] == "Employee";
   });
   console.log("Response: ", users);
   if (users) {
@@ -351,7 +367,7 @@ app.get(
 
 //POST api/tasks
 app.post(
-  "/api/tasks",
+  "/api/createtask",
   [authenticateToken],
   tasks.posttasks
 );

@@ -1,0 +1,116 @@
+<h1>Tasks</h1>
+<a [routerLink]=" [ '/employee', 'createtask' ] " class="btn btn-primary">Create Task</a>
+
+<div class="row mt-1 mb-2">
+
+    <div class="col-lg-6 mb-1" *ngFor="let taskGroup of taskGroups">
+        <div class="card card-primary">
+
+            <div class="card-header">
+                <div class="card-title">
+                    <h4>
+                        {{taskGroup.taskStatusName}}
+                        <span class="badge badge-warning float-right">
+                            {{taskGroup.tasks.length}}
+                        </span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                <div class="card mb-1" *ngFor="let task of taskGroup.tasks; let i = index">
+
+                    <div class="card-header">
+                        #{{i + 1}} &nbsp;&nbsp; {{task.taskName}}
+
+                        <div class="badge float-right mr-1 badge-primary" style="font-size:15px">
+                            {{task.taskPriority?.taskPriorityName}}
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div>{{task.description}}</div>
+
+                        <div>
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <td>Created:</td>
+                                    <td>
+                                        <i class="fa fa-user"></i>
+                                        {{task.createdByUser?.userName}}
+                                        &nbsp;&nbsp;&nbsp;
+                                        <i class="fa fa-calendar"></i>
+                                        {{task.createdOnString}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Assigned to:</td>
+                                    <td>
+                                        <i class="fa fa-user-o"></i>
+                                        {{task.assignedToUser?.userName}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Project:</td>
+                                    <td>
+                                        <i class="fa fa-briefcase"></i>
+                                        {{task.project?.projectName}} -
+                                        {{task.project?.clientLocation?.clientLocationName}}
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-light">
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>User</th>
+                                    <th>Description</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let taskStatusDetail of task.taskStatusDetails">
+                                        <td>
+                                            <i class="fa fa-calendar"></i>
+                                            {{taskStatusDetail?.statusUpdationDateTimeString}}
+                                        </td>
+                                        <td class="text-primary">
+                                            {{taskStatusDetail?.taskStatus?.taskStatusName}}
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-user"></i>
+                                            {{taskStatusDetail?.user?.userName}}
+                                        </td>
+                                        <td>
+                                            {{taskStatusDetail?.description}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="btn-group">
+                            <a [routerLink]=" [ '/employee', 'updatetaskstatus', task.taskID ] " class="btn btn-sm btn-outline-secondary">
+                                <i class="fa fa-pencil"></i>
+                                Change Status
+                            </a>
+
+                            <a [routerLink]=" [ '/employee', 'edittask', task.taskID ] " class="btn btn-sm btn-outline-secondary" *ngIf="task.createdByUser?.userName == loginService.currentUserName">
+                                <i class="fa fa-pencil-square-o"></i>
+                                Edit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
