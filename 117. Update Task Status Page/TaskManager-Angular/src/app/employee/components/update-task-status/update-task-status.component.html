@@ -1,0 +1,65 @@
+<h1>Update Task Status</h1>
+<form [formGroup]="editTaskStatusForm" novalidate="novalidate">
+
+  <div class="row">
+
+    <div class="col-12">
+      <table class="table table-sm table-borderless">
+        <tr>
+          <td style="width:65px">Created:</td>
+          <td>
+            <i class="fa fa-user"></i>
+            {{currentTask.createdByUser?.userName}}
+            &nbsp;&nbsp;&nbsp;
+            <i class="fa fa-calendar"></i>
+            {{currentTask.createdOnString}}
+          </td>
+
+          <td class="text-right">Last Updated on:</td>
+          <td>
+            <i class="fa fa-calendar-check-o"></i>
+            {{currentTask.lastUpdatedOnString}}
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-lg-12">
+      <div class="form-group">
+        <label for="description" class="text-info">Description:</label>
+        <textarea class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+
+      <div class="form-group form-row">
+        <label for="taskStatusID" class="text-info col-md-3 col-form-label">Status:</label>
+        <div class="col-md-9">
+          <select class="form-control" id="taskStatusID" formControlName="taskStatusID">
+            <option value="null">Please Select</option>
+
+            <option *ngFor="let taskStatus of taskStatuses | async" [value]="taskStatus.taskStatusID">
+              {{taskStatus.taskStatusName}}
+            </option>
+          </select>
+
+          <span class="text-danger" *ngIf="editTaskStatusForm.get('taskStatusID').invalid && (editTaskStatusForm.get('taskStatusID').dirty || editTaskStatusForm.get('taskStatusID').touched || editTaskStatusForm.submitted) && editTaskStatusForm.get('taskStatusID').errors?.required">
+            Please select current task status
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-lg-12 border-top text-center">
+      <div>
+        <button class="btn btn-success btn-lg mt-2" (click)="onUpdateTaskStatusClick($event)">Update Task Status</button>
+      </div>
+      <div>
+        <a [routerLink]=" [ '/employee', 'tasks' ] " class="btn btn-info btn-sm mt-1">Back to Tasks</a>
+      </div>
+    </div>
+
+  </div>
+</form>
