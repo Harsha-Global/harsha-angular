@@ -1,0 +1,509 @@
+<div class="page-title" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lt-md="start start" fxLayout.lt-md="column" fxLayoutGap.lt-md="13px">
+  <div fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">New Booking</div>
+  <div fxFlex="1 1 50%" class="text-right" fxFlex.lt-md="1 1 100%"><a mat-stroked-button [routerLink]="[ '/bookings-list' ]">
+      <mat-icon>arrow_back</mat-icon>&nbsp;Back to Booking
+    </a></div>
+</div>
+
+<mat-horizontal-stepper linear="true" #stepper>
+
+  <!-- Search for a hotel starts -->
+  <mat-step label="Search for a hotel" stepControlName="searchHotel" stepControlName="searchHotel" [completed]="formGroup.get('searchHotel').valid">
+    <form [formGroup]="formGroup">
+      <div class="form-container mb mt" formGroupName="searchHotel">
+
+        <h2 class="section-header" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
+          <div fxFlex="1 1 40%" fxFlex="1 1 100%">Search for a hotel</div>
+          <div fxFlex="1 1 60%" fxFlex="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true}">
+            <button mat-flat-button color="primary" matStepperNext>
+              <span>Search Hotels</span>
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </h2>
+
+        <div fxLayout="row" fxLayoutGap.gt-sm="40px" fxLayout.lt-md="column">
+          <!-- box 1 starts -->
+          <div fxFlex="1 1 calc(50% - 20px)" fxFlex.lt-md="1 1 100%">
+
+            <!-- auto complete -->
+            <mat-form-field class="w-100" color="primary">
+              <mat-label>Where</mat-label>
+              <input type="text" matInput formControlName="city" [matAutocomplete]="citiesAutocomplete" />
+              <mat-autocomplete #citiesAutocomplete="matAutocomplete">
+                <mat-option *ngIf="isCitiesLoading">Loading...</mat-option>
+                <mat-option *ngFor="let city of cities" [value]="city.cityName">{{city.cityName}}</mat-option>
+              </mat-autocomplete>
+
+              <mat-error *ngIf="getFormControl('searchHotel.city').hasError('required')" [innerHTML]="getErrorMessage('city', 'required')"></mat-error>
+              <mat-hint align="end">Choose or type a city</mat-hint>
+              <mat-icon matPrefix class="mr">location_city</mat-icon>
+            </mat-form-field>
+
+            <div class="mt" fxLayout="row" fxLayout.lt-md="column">
+
+              <div fxFlex.lt-md="1 1 100%">
+                <mat-label>Adults:</mat-label>
+
+                <button mat-icon-button class="hand-icon" type="button" (click)="decreaseAdults()">
+                  <mat-icon>remove_circle</mat-icon>
+                </button>
+
+                <span class="font-weight-bold">{{formGroup.value.searchHotel.adults}}</span>
+
+                <button mat-icon-button class="hand-icon" type="button" (click)="increaseAdults()">
+                  <mat-icon>add_circle</mat-icon>
+                </button>
+              </div>
+
+
+              <div fxFlex.lt-md="1 1 100%" style="margin-left:50px">
+                <mat-label>Children:</mat-label>
+
+                <button mat-icon-button class="hand-icon" type="button" (click)="decreaseChildren()">
+                  <mat-icon>remove_circle</mat-icon>
+                </button>
+
+                <span class="font-weight-bold">{{formGroup.value.searchHotel.children}}</span>
+
+                <button mat-icon-button class="hand-icon" type="button" (click)="increaseChildren()">
+                  <mat-icon>add_circle</mat-icon>
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <!-- box 1 ends -->
+
+          <!-- box 2 starts -->
+          <div fxFlex="1 1 calc(50% - 20px)" fxFlex.lt-md="1 1 100%">
+            <!-- date range input -->
+            <mat-form-field class="w-100" color="primary">
+              <mat-label>Check-in and Check-out dates</mat-label>
+
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Check-in date" formControlName="checkIn" />
+                <input matEndDate placeholder="Check-out date" formControlName="checkOut" />
+              </mat-date-range-input>
+
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              <mat-icon matPrefix class="mr">pending_actions</mat-icon>
+
+              <mat-error *ngIf="getFormControl('searchHotel.checkIn').hasError('required')" [innerHTML]="getErrorMessage('checkIn', 'required')"></mat-error>
+
+              <mat-error *ngIf="getFormControl('searchHotel.checkOut').hasError('required')" [innerHTML]="getErrorMessage('checkOut', 'required')"></mat-error>
+            </mat-form-field>
+          </div>
+          <!-- box 2 ends -->
+        </div>
+
+      </div>
+    </form>
+  </mat-step>
+  <!-- Search for a hotel starts -->
+
+
+  <!-- Choose a hotel starts -->
+  <mat-step label=" Choose a hotel" stepControlName="chooseHotel" [completed]="formGroup.get('chooseHotel').valid">
+    <h2 class="section-header" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
+      <div fxFlex="1 1 40%" fxFlex="1 1 100%">Choose a hotel</div>
+      <div fxFlex="1 1 60%" fxFlex="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true}">
+        <button mat-stroked-button color="accent" matStepperPrevious>
+          <mat-icon>chevron_left</mat-icon>&nbsp;
+          <span>Back...</span>
+        </button>
+      </div>
+    </h2>
+
+    <div fxLayout="row" fxLayoutAlign="start space-between" fxLayoutGap="20px" fxLayout.lt-md="column">
+      <mat-card fxFlex="1 1 20%" fxFlex.lt-md="1 1 100%" *ngFor="let hotel of hotels">
+        <mat-card-header>
+          <mat-card-title>{{hotel.hotelName}}</mat-card-title>
+          <mat-card-subtitle>{{hotel.hotelLocation}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-actions>
+          <button mat-flat-button color="primary" matStepperNext (click)="chooseHotel(hotel)">
+            <span>Choose this Hotel</span>&nbsp;
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </mat-card-actions>
+
+        <img mat-card-image [src]="hotel.hotelImage" [alt]="hotel.hotelImage">
+
+        <mat-card-content>
+          <p class="text-small">
+            {{hotel.hotelDescription}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-step>
+  <!-- Choose a hotel ends -->
+
+
+  <!-- Choose a room starts -->
+  <mat-step label="Choose a Room" stepControlName="chooseRoom" [completed]="formGroup.get('chooseRoom').valid">
+    <form [formGroup]="formGroup">
+      <div formGroupName="chooseRoom" class="form-container mt mb">
+
+        <h2 class="section-header" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-sm="column">
+          <div fxFlex="1 1 40%" fxFlex.lt-sm="1 1 100%">
+            Room Tarrif
+          </div>
+
+          <div fxFlex="1 1 60%" fxFlex.lt-sm="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true }">
+            <button mat-stroked-button color="accent" matStepperPrevious class="mr">
+              <mat-icon>chevron_left</mat-icon>&nbsp;
+              <span>Back...</span>
+            </button>
+
+            <button mat-flat-button color="primary" matStepperNext>
+              <span>Confirm & Next</span>&nbsp;
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+
+          </div>
+        </h2>
+
+        <!-- button toggle -->
+        <div class="mb mt" fxLayout="row" fxLayoutAlign="start stretch" fxLayout.lt-lg="column" fxLayoutGap="20px" fxLayoutGap.lt-lg="0px">
+
+          <!-- first box starts -->
+          <div fxFlex="1 1 70%" fxFlex.lt-lg="1 1 100%">
+            <div>
+              <mat-label>Choose a Room Type:</mat-label>
+            </div>
+
+            <mat-button-toggle-group #group="matButtonToggleGroup" formControlName="roomType" vertical class="w-100">
+
+              <mat-button-toggle *ngFor="let roomType of roomTypes" [value]="roomType.roomTypeName" class="room-type">
+
+                <div class="text-left">
+                  <h3 class="room-type-heading" fxLayout="row" fxLayoutAlign="space-between start" fxLayout.lt-lg="column">
+
+                    <div fxLayout="row" fxFlex="1 1 50%" fxFlex.lt-lg="1 1 100%">
+                      <mat-icon class="mr">king_bed</mat-icon>
+                      <span> {{roomType.roomTypeName}}</span>
+                    </div>
+
+                    <div fxFlex="1 1 50%" fxFlex.lt-lg="1 1 100%">
+                      <span class="room-type-price">{{roomType.price | currency}} <i class="grey">per night</i></span>
+                    </div>
+                  </h3>
+
+
+                  <div class="room-type-content" fxLayout="row" fxLayout.lt-md="column">
+                    <div fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+                      <div>{{roomType.vat | percent}} VAT included in price</div>
+                      <div>Max: {{roomType.maxPersons}} Persons(s)</div>
+                    </div>
+                    <div fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">
+                      <div>Check-in Time: {{roomType.checkIn}}</div>
+                      <div>Check-out Time: {{roomType.checkOut}}</div>
+                    </div>
+                  </div>
+                </div>
+
+              </mat-button-toggle>
+
+            </mat-button-toggle-group>
+          </div>
+          <!-- first box ends -->
+
+          <!-- second box starts -->
+          <div fxFlex="1 1 30%" fxFlex.lt-lg="1 1 100%">
+
+            <div class="mt mb">
+              <mat-slide-toggle formControlName="extraBed">Extra Bed</mat-slide-toggle>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="mt mb">
+              <mat-label class="mr">Dine In:</mat-label>
+              <span class="mr">
+                <mat-checkbox formControlName="allDineIn" (change)="onAllDineInCheckBoxChange()" color="primary" [indeterminate]="!isAllDineInSelected() && !isNoDineInSelected()">All</mat-checkbox>
+              </span>
+
+              <span formArrayName="dineIn">
+                <span *ngFor="let dineIn of dineInFormArray.controls; let i = index" class="mr">
+                  <mat-checkbox [formControl]="dineIn" (change)="onDineInChange(index)">{{allDineIn[i].dineInName}}</mat-checkbox>
+                </span>
+              </span>
+            </div>
+
+            <!-- chips with auto complete -->
+            <mat-form-field class="mt w-100">
+              <mat-label>Food Menu</mat-label>
+
+              <mat-chip-list #chipList>
+                <mat-chip *ngFor="let food of foods" [removable]="true" (removed)="remove(food)">
+                  {{food.name}}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+
+              <input placeholder="Type food name..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeyCodes" (matChipInputTokenEnd)="add($event)" [matAutocomplete]="foodsAutocomplete" formControlName="foods" #foodInput>
+            </mat-form-field>
+
+            <mat-autocomplete #foodsAutocomplete="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let food of filteredFoods | async" [value]="food.name">{{food.name}}</mat-option>
+            </mat-autocomplete>
+
+          </div>
+          <!-- second box ends -->
+
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <!-- Choose a room ends -->
+
+
+  <!-- Personal Information starts -->
+  <mat-step label="Personal Information" stepControlName="personalInformation" [completed]="formGroup.get('personalInformation').valid">
+    <form [formGroup]="formGroup">
+      <div class="form-container mb mt" fxFlex="1 1 100%" formGroupName="personalInformation">
+
+        <h2 class="section-header" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-sm="column">
+          <div fxFlex="1 1 40%" fxFlex.lt-sm="1 1 100%">Personal Information</div>
+
+          <div fxFlex="1 1 60%" fxFlex.lt-sm="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true }">
+            <button mat-stroked-button color="accent" matStepperPrevious class="mr">
+              <mat-icon>chevron_left</mat-icon>&nbsp;
+              <span>Back...</span>
+            </button>
+
+            <button mat-flat-button color="primary" matStepperNext>
+              <span>Save & Next</span>
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </h2>
+
+        <!-- customer name starts -->
+        <mat-form-field class="w-100" color="primary">
+          <mat-label>Name</mat-label>
+          <input type="text" matInput formControlName="customerName">
+
+          <mat-hint align="end">Up to 30 characters</mat-hint>
+          <mat-error *ngIf="getFormControl('personalInformation.customerName').hasError('required')" [innerHTML]="getErrorMessage('customerName', 'required')"></mat-error>
+
+          <mat-error *ngIf="getFormControl('personalInformation.customerName').hasError('maxlength')" [innerHTML]="getErrorMessage('customerName', 'maxlength')"></mat-error>
+
+          <mat-error *ngIf="getFormControl('personalInformation.customerName').hasError('pattern')" [innerHTML]="getErrorMessage('customerName', 'pattern')"></mat-error>
+
+          <mat-icon matPrefix class="mr">account_circle</mat-icon>
+        </mat-form-field>
+        <!-- customer name ends -->
+
+
+        <!-- phone starts -->
+        <mat-form-field class="w-100" color="primary">
+          <mat-label>Phone</mat-label>
+          <input type="text" matInput formControlName="phone">
+          <mat-icon matPrefix class="mr">phone</mat-icon>
+        </mat-form-field>
+        <!-- phone ends -->
+
+
+        <!-- country starts -->
+        <mat-form-field class="w-100" color="primary">
+          <mat-label>Country</mat-label>
+
+          <mat-select formControlName="country">
+            <mat-option *ngFor="let country of countries" [value]="country.countryName">{{country.countryName}}</mat-option>
+          </mat-select>
+
+          <mat-hint align="end">Choose a country</mat-hint>
+
+          <mat-error *ngIf="getFormControl('personalInformation.country').hasError('required')" [innerHTML]="getErrorMessage('country', 'required')"></mat-error>
+
+          <mat-icon matPrefix class="mr">place</mat-icon>
+        </mat-form-field>
+        <!-- country starts -->
+
+
+        <!-- date of birth starts -->
+        <mat-form-field class="w-100" color="primary">
+          <mat-label>Date of Birth</mat-label>
+
+          <input type="text" matInput formControlName="dateOfBirth" [min]="minDate" [max]="maxDate" [matDatepicker]="dobDatepicker">
+
+          <mat-datepicker-toggle [for]="dobDatepicker" matSuffix></mat-datepicker-toggle>
+
+          <mat-datepicker #dobDatepicker startView="month" [startAt]="startDate"></mat-datepicker>
+
+          <mat-hint align="end">Choose date of birth</mat-hint>
+
+          <mat-icon matPrefix class="mr">calendar_today</mat-icon>
+        </mat-form-field>
+        <!-- date of birth ends -->
+
+        <!-- gender starts -->
+        <div class="mt mb">
+          <mat-radio-group formControlName="gender">
+            <mat-label class="mr">Gender:</mat-label>
+
+            <mat-radio-button value="male" class="mr">Male</mat-radio-button>
+            <mat-radio-button value="female" class="ml mr">Female</mat-radio-button>
+            <mat-radio-button value="others">Others</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <!-- gender ends -->
+
+      </div>
+    </form>
+  </mat-step>
+  <!-- Personal Information ends -->
+
+  <!-- guests information -->
+  <mat-step label="Guests Information" stepControlName="guestsInformation" [completed]="formGroup.get('guestsInformation').valid">
+    <form [formGroup]="formGroup">
+      <div class="form-container" formGroupName="guestsInformation">
+
+        <h2 class="section-header" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column">
+          <div fxFlex="1 1 40%" fxFlex.lt-md="1 1 100%">Guests Information</div>
+          <div fxFlex="1 1 60%" fxFlex.lt-md="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true }">
+
+            <button mat-stroked-button color="accent" matStepperPrevious class="mr">
+              <mat-icon>chevron_left</mat-icon>&nbsp;
+              <span>Back...</span>
+            </button>
+
+            <button mat-flat-button color="primary" matStepperNext>
+              <span>Save & Next</span>&nbsp;
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+
+          </div>
+        </h2>
+
+        <!-- guest 1 starts -->
+        <div class="guest-1">
+          <div class="font-weight-bold text-blue">Guest 1</div>
+
+          <mat-form-field class="w-100" color="primary">
+            <mat-label>Guest Name</mat-label>
+            <input type="text" matInput formControlName="guest1Name">
+            <mat-icon matPrefix class="mr">people_alt</mat-icon>
+          </mat-form-field>
+
+          <div fxLayout="row">
+            <mat-form-field fxFlex="1 1 50%" color="primary">
+              <mat-label>Age</mat-label>
+              <input type="number" matInput formControlName="guest1Age">
+              <mat-icon matPrefix class="mr">event</mat-icon>
+            </mat-form-field>
+
+            <div class="pt">
+              <mat-radio-group formControlName="guest1Gender">
+                <mat-radio-button value="male" class="ml mr">Male</mat-radio-button>
+                <mat-radio-button value="female" class="ml mr">Female</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <!-- guest 1 ends -->
+
+
+
+        <!-- guest 2 starts -->
+        <div class="guest-1">
+          <div class="font-weight-bold text-blue">Guest 2</div>
+
+          <mat-form-field class="w-100" color="primary">
+            <mat-label>Guest Name</mat-label>
+            <input type="text" matInput formControlName="guest2Name">
+            <mat-icon matPrefix class="mr">people_alt</mat-icon>
+          </mat-form-field>
+
+          <div fxLayout="row">
+            <mat-form-field fxFlex="1 1 50%" color="primary">
+              <mat-label>Age</mat-label>
+              <input type="number" matInput formControlName="guest2Age">
+              <mat-icon matPrefix class="mr">event</mat-icon>
+            </mat-form-field>
+
+            <div class="pt">
+              <mat-radio-group formControlName="guest2Gender">
+                <mat-radio-button value="male" class="ml mr">Male</mat-radio-button>
+                <mat-radio-button value="female" class="ml mr">Female</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <!-- guest 1 ends -->
+      </div>
+    </form>
+  </mat-step>
+  <!-- guests information -->
+
+
+  <mat-step label="Payment" stepControlName="payment" [completed]="formGroup.get('payment').valid">
+    <form [formGroup]="formGroup">
+      <div class="form-container" formGroupName="payment">
+        <h2 class="section-header" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between stretch">
+          <div fxFlex="1 1 40%" fxFlex.lt-md="1 1 100%">Payment</div>
+
+          <div fxFlex="1 1 60%" fxFlex.lt-md="1 1 100%" [ngClass.gt-sm]="{ 'text-right': true }">
+            <button mat-stroked-button color="accent" matStepperPrevious class="mr">
+              <mat-icon>chevron_left</mat-icon>&nbsp;
+              <span>Back...</span>
+            </button>
+
+            <button mat-flat-button color="primary" matStepperNext (click)="onFinishClick()">
+              <span>Save & Next</span>&nbsp;
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </h2>
+
+        <mat-tab-group>
+          <mat-tab label="Credit Card Payment">
+            <div class="font-weight-bold text-blue mt">Credit card details</div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="35px" fxLayout.lt-md="column" fxLayoutGap.lt-md="0px">
+
+              <mat-form-field fxFlex="1 1 50%" color="primary">
+                <mat-label>Credit Card Number</mat-label>
+                <input type="number" matInput formControlName="creditCardNumber">
+                <mat-icon matPrefix class="mr">payment</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field fxFlex="1 1 50%" color="primary">
+                <mat-label>CVV</mat-label>
+                <input type="number" matInput formControlName="cvv">
+                <mat-icon matPrefix class="mr">vpn_key</mat-icon>
+              </mat-form-field>
+            </div>
+
+          </mat-tab>
+
+          <mat-tab label="Gift Card Payment">
+            <div class="font-weight-bold text-blue mt">Gift card Details</div>
+            <mat-form-field color="primary" class="w-100">
+              <mat-label>Gift Card Number</mat-label>
+              <input type="number" matInput formControlName="giftCardNumber">
+              <mat-icon matPrefix class="mr">payment</mat-icon>
+            </mat-form-field>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step label="Finish">
+    <p>Congratulations, your booking is confirmed</p>
+    <div>
+      <a [routerLink]="[ '/bookings-list' ]" mat-flat-button class="button-green">Go to Bookings List</a>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<div class="mb">
+  {{formGroup.value | json}}
+</div>

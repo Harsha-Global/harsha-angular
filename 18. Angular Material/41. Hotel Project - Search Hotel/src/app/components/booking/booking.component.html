@@ -1,0 +1,115 @@
+<div class="page-title" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lt-md="start start" fxLayout.lt-md="column" fxLayoutGap.lt-md="13px">
+  <div fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">New Booking</div>
+  <div fxFlex="1 1 50%" class="text-right" fxFlex.lt-md="1 1 100%"><a mat-stroked-button [routerLink]="[ '/bookings-list' ]">
+      <mat-icon>arrow_back</mat-icon>&nbsp;Back to Booking
+    </a></div>
+</div>
+
+<mat-horizontal-stepper>
+  <mat-step label="Search for a hotel" stepControlName="searchHotel">
+    <form [formGroup]="formGroup">
+      <div class="form-container mb mt" formGroupName="searchHotel">
+
+        <h2 class="section-header" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
+          <div fxFlex="1 1 40%" fxFlex="1 1 100%">Search for a hotel</div>
+          <div fxFlex="1 1 60%" fxFlex="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true}">
+            <button mat-flat-button color="primary">
+              <span>Search Hotels</span>
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </h2>
+
+        <div fxLayout="row" fxLayoutGap.gt-sm="40px" fxLayout.lt-md="column">
+          <!-- box 1 starts -->
+          <div fxFlex="1 1 calc(50% - 20px)" fxFlex.lt-md="1 1 100%">
+
+            <!-- auto complete -->
+            <mat-form-field class="w-100" color="primary">
+              <mat-label>Where</mat-label>
+              <input type="text" matInput formControlName="city" [matAutocomplete]="citiesAutocomplete" />
+              <mat-autocomplete #citiesAutocomplete="matAutocomplete">
+                <mat-option *ngIf="isCitiesLoading">Loading...</mat-option>
+                <mat-option *ngFor="let city of cities" [value]="city.cityName">{{city.cityName}}</mat-option>
+              </mat-autocomplete>
+
+              <mat-error *ngIf="getFormControl('searchHotel.city').hasError('required')" [innerHTML]="getErrorMessage('city', 'required')"></mat-error>
+              <mat-hint align="end">Choose or type a city</mat-hint>
+              <mat-icon matPrefix class="mr">location_city</mat-icon>
+            </mat-form-field>
+
+            <div class="mt" fxLayout="row" fxLayout.lt-md="column">
+
+              <div fxFlex.lt-md="1 1 100%">
+                <mat-label>Adults:</mat-label>
+
+                <button mat-icon-button class="hand-icon" type="button" (click)="decreaseAdults()">
+                  <mat-icon>remove_circle</mat-icon>
+                </button>
+
+                <span class="font-weight-bold">{{formGroup.value.searchHotel.adults}}</span>
+
+                <button mat-icon-button class="hand-icon" type="button" (click)="increaseAdults()">
+                  <mat-icon>add_circle</mat-icon>
+                </button>
+              </div>
+
+
+              <div fxFlex.lt-md="1 1 100%" style="margin-left:50px">
+                <mat-label>Children:</mat-label>
+
+                <button mat-icon-button class="hand-icon" type="button" (click)="decreaseChildren()">
+                  <mat-icon>remove_circle</mat-icon>
+                </button>
+
+                <span class="font-weight-bold">{{formGroup.value.searchHotel.children}}</span>
+
+                <button mat-icon-button class="hand-icon" type="button" (click)="increaseChildren()">
+                  <mat-icon>add_circle</mat-icon>
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <!-- box 1 ends -->
+
+          <!-- box 2 starts -->
+          <div fxFlex="1 1 calc(50% - 20px)" fxFlex.lt-md="1 1 100%">
+            <!-- date range input -->
+            <mat-form-field class="w-100" color="primary">
+              <mat-label>Check-in and Check-out dates</mat-label>
+
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Check-in date" formControlName="checkIn" />
+                <input matEndDate placeholder="Check-out date" formControlName="checkOut" />
+              </mat-date-range-input>
+
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              <mat-icon matPrefix class="mr">pending_actions</mat-icon>
+
+              <mat-error *ngIf="getFormControl('searchHotel.checkIn').hasError('required')" [innerHTML]="getErrorMessage('checkIn', 'required')"></mat-error>
+
+              <mat-error *ngIf="getFormControl('searchHotel.checkOut').hasError('required')" [innerHTML]="getErrorMessage('checkOut', 'required')"></mat-error>
+            </mat-form-field>
+          </div>
+          <!-- box 2 ends -->
+        </div>
+
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step label=" Choose a hotel">two
+  </mat-step>
+  <mat-step label="Choose a Room">three</mat-step>
+  <mat-step label="Personal Information">four</mat-step>
+  <mat-step label="Guests Information">five</mat-step>
+  <mat-step label="Payment">six</mat-step>
+  <mat-step label="Finish">seven</mat-step>
+</mat-horizontal-stepper>
+
+<div class="mb">
+  {{formGroup.value | json}}
+</div>

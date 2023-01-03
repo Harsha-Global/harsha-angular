@@ -1,0 +1,64 @@
+<h2>Bookings List</h2>
+<form>
+  <div class="table-container">
+    <table mat-table [dataSource]="bookings" class="w-100" matSort>
+
+      <!-- customerName column definition starts -->
+      <ng-container matColumnDef="customerName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer Name</th>
+        <td mat-cell *matCellDef="let booking" class="w-40">{{booking.customerName}}</td>
+        <td mat-footer-cell *matFooterCellDef colspan="2">Total Bookings:</td>
+      </ng-container>
+      <!-- customerName column definition ends -->
+
+      <!-- location column definition starts -->
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+        <td mat-cell *matCellDef="let booking" class="w-25">{{booking.location}}</td>
+      </ng-container>
+      <!-- location column definition ends -->
+
+      <!-- date column definition starts -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let booking" class="w-25">{{booking.date}}</td>
+        <td mat-footer-cell *matFooterCellDef colspan="2">{{rows.length}}</td>
+      </ng-container>
+      <!-- date column definition ends -->
+
+      <!-- actions column definition starts -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let booking" class="w-15">
+          <button mat-button>Edit</button>
+        </td>
+      </ng-container>
+      <!-- actions column definition ends -->
+
+      <!-- loading / progress -->
+      <ng-container matColumnDef="loading">
+        <td mat-footer-cell *matFooterCellDef class="text-center text-italic" colspan="6">
+          <div [ngClass]="{ 'hidden': isError}">
+            <mat-spinner diameter="40" class="margin-auto"></mat-spinner>
+          </div>
+          {{bookingLoadingStatus}}
+        </td>
+      </ng-container>
+
+
+      <!-- header row and data rows -->
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+      <tr mat-row *matRowDef="let booking; columns: columnsToDisplay"></tr>
+
+      <!-- footer row -->
+      <tr mat-footer-row *matFooterRowDef="['customerName', 'date']; sticky: true" class="text-italic font-weight-bold" [ngClass]="{ 'hidden': !isLoadingCompleted}"></tr>
+
+      <tr mat-footer-row *matFooterRowDef="[ 'loading']" [ngClass]="{ 'hidden': isLoadingCompleted}"></tr>
+
+    </table>
+  </div>
+
+  <div [ngClass]="{ 'hidden': !isLoadingCompleted}">
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[ 5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</form>

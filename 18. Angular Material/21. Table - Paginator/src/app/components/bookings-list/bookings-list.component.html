@@ -1,0 +1,45 @@
+<h2>Bookings List</h2>
+<form>
+  <div>
+    <table mat-table [dataSource]="bookings" class="w-100">
+
+      <!-- customerName column definition starts -->
+      <ng-container matColumnDef="customerName">
+        <th mat-header-cell *matHeaderCellDef>Customer Name</th>
+        <td mat-cell *matCellDef="let booking" class="w-40">{{booking.customerName}}</td>
+      </ng-container>
+      <!-- customerName column definition ends -->
+
+      <!-- location column definition starts -->
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef>Location</th>
+        <td mat-cell *matCellDef="let booking" class="w-25">{{booking.location}}</td>
+      </ng-container>
+      <!-- location column definition ends -->
+
+      <!-- date column definition starts -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let booking" class="w-25">{{booking.date}}</td>
+      </ng-container>
+      <!-- date column definition ends -->
+
+      <!-- date column definition starts -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let booking" class="w-15">
+          <button mat-button>Edit</button>
+        </td>
+      </ng-container>
+      <!-- date column definition ends -->
+
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let booking; columns: columnsToDisplay"></tr>
+    </table>
+  </div>
+
+  <div>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[ 5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</form>

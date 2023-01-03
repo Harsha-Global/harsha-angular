@@ -1,0 +1,327 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "countryName": "Afghanistan"
+    },
+    {
+      "id": 2,
+      "countryName": "Australia"
+    },
+    {
+      "id": 3,
+      "countryName": "Egypt"
+    },
+    {
+      "id": 4,
+      "countryName": "Ethiopia"
+    },
+    {
+      "id": 5,
+      "countryName": "Georgia"
+    },
+    {
+      "id": 6,
+      "countryName": "Germany"
+    },
+    {
+      "id": 7,
+      "countryName": "Finland"
+    },
+    {
+      "id": 8,
+      "countryName": "France"
+    },
+    {
+      "id": 9,
+      "countryName": "India"
+    },
+    {
+      "id": 10,
+      "countryName": "Iraq"
+    },
+    {
+      "id": 11,
+      "countryName": "Italy"
+    },
+    {
+      "id": 12,
+      "countryName": "United Kingdom"
+    },
+    {
+      "id": 13,
+      "countryName": "United States"
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "cityName": "Abu Dhabi"
+    },
+    {
+      "id": 2,
+      "cityName": "Amsterdam"
+    },
+    {
+      "id": 3,
+      "cityName": "Berlin"
+    },
+    {
+      "id": 4,
+      "cityName": "Chicago"
+    },
+    {
+      "id": 5,
+      "cityName": "Doha"
+    },
+    {
+      "id": 6,
+      "cityName": "Dubai"
+    },
+    {
+      "id": 7,
+      "cityName": "Istanbul"
+    },
+    {
+      "id": 8,
+      "cityName": "Las Vegas"
+    },
+    {
+      "id": 9,
+      "cityName": "London"
+    },
+    {
+      "id": 10,
+      "cityName": "Los Angeles"
+    },
+    {
+      "id": 11,
+      "cityName": "Moscow"
+    },
+    {
+      "id": 12,
+      "cityName": "Mumbai"
+    },
+    {
+      "id": 13,
+      "cityName": "New York"
+    },
+    {
+      "id": 14,
+      "cityName": "Paris"
+    },
+    {
+      "id": 15,
+      "cityName": "San Francisco"
+    },
+    {
+      "id": 16,
+      "cityName": "Seoul"
+    },
+    {
+      "id": 17,
+      "cityName": "Singapore"
+    },
+    {
+      "id": 18,
+      "cityName": "Sydney"
+    },
+    {
+      "id": 19,
+      "cityName": "Tokyo"
+    },
+    {
+      "id": 20,
+      "cityName": "Toronto"
+    },
+    {
+      "id": 21,
+      "cityName": "Washington"
+    }
+  ],
+  "hotels": [
+    {
+      "hotelName": "Serene Stays",
+      "hotelLocation": "Cromerth",
+      "hotelImage": "/assets/hotel1.jpg",
+      "hotelDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident laboriosam ipsam reprehenderit."
+    },
+    {
+      "hotelName": "Leisure Inn",
+      "hotelLocation": "Wingston",
+      "hotelImage": "/assets/hotel2.jpg",
+      "hotelDescription": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+    },
+    {
+      "hotelName": "Tranquil Tavern",
+      "hotelLocation": "Garmsby",
+      "hotelImage": "/assets/hotel3.jpg",
+      "hotelDescription": "sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est."
+    },
+    {
+      "hotelName": "Motel Merry",
+      "hotelLocation": "Kingcardine",
+      "hotelImage": "/assets/hotel4.jpg",
+      "hotelDescription": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex."
+    },
+    {
+      "hotelName": "Mirth Motel",
+      "hotelLocation": "Perthlochry",
+      "hotelImage": "/assets/hotel5.jpg",
+      "hotelDescription": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born."
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "city": "Doha",
+      "hotel": "Hiltop Hotel",
+      "checkIn": "2025-07-23T18:30:00.000Z",
+      "checkOut": "2025-07-25T18:30:00.000Z",
+      "adults": 1,
+      "children": 0,
+      "customerName": "Smith",
+      "country": "USA",
+      "dateOfBirth": "1995-09-03T00:00:00.000Z",
+      "gender": "male",
+      "phone": "(123)28189374",
+      "status": "Not Paid",
+      "roomType": "Standard Single Room",
+      "guest1Name": "John Doe",
+      "guest1Age": 30,
+      "guest1Gender": "male",
+      "guest2Name": "",
+      "guest2Age": "",
+      "guest2Gender": "",
+      "extraBed": false,
+      "dineIn": [
+        false,
+        false,
+        false
+      ],
+      "foods": [
+        {
+          "name": "Non Veg Plater"
+        }
+      ],
+      "isExpanded": false
+    },
+    {
+      "id": 2,
+      "city": "Sydney",
+      "hotel": "Tranquil Tavern",
+      "checkIn": "2025-08-09T07:00:00.000Z",
+      "checkOut": "2025-08-11T18:30:00.000Z",
+      "adults": 1,
+      "children": 1,
+      "customerName": "Lucy",
+      "country": "India",
+      "dateOfBirth": "2000-08-02T00:00:00.000Z",
+      "gender": "female",
+      "phone": "99587487800",
+      "status": "Paid",
+      "roomType": "Business Class Single Room",
+      "guest1Name": "Lucy",
+      "guest1Age": 24,
+      "guest1Gender": "female",
+      "guest2Name": "",
+      "guest2Age": "",
+      "guest2Gender": "",
+      "extraBed": false,
+      "dineIn": [
+        true,
+        true,
+        false
+      ],
+      "foods": [],
+      "isExpanded": false
+    },
+    {
+      "id": 3,
+      "city": "Amsterdam",
+      "hotel": "Lorem Grand Hotel",
+      "checkIn": "2025-03-07T07:00:00.000Z",
+      "checkOut": "2025-03-09T18:30:00.000Z",
+      "adults": 1,
+      "children": 1,
+      "customerName": "Mary",
+      "country": "India",
+      "dateOfBirth": "2000-08-02T00:00:00.000Z",
+      "gender": "female",
+      "phone": "99587487800",
+      "status": "Paid",
+      "roomType": "Business Class Single Room",
+      "guest1Name": "Mary",
+      "guest1Age": 24,
+      "guest1Gender": "female",
+      "guest2Name": "",
+      "guest2Age": "",
+      "guest2Gender": "",
+      "extraBed": false,
+      "dineIn": [
+        true,
+        true,
+        false
+      ],
+      "foods": [],
+      "isExpanded": false
+    }
+  ],
+  "roomtypes": [
+    {
+      "id": 1,
+      "roomTypeName": "Standard Double Room",
+      "price": 100,
+      "vat": 0.1,
+      "maxPersons": 2,
+      "checkIn": "12:00 pm",
+      "checkOut": "11:30 am"
+    },
+    {
+      "id": 2,
+      "roomTypeName": "Deluxe Double Room",
+      "value": "Deluxe Double Room",
+      "price": 120,
+      "vat": 0.1,
+      "maxPersons": 2,
+      "checkIn": "12:00 pm",
+      "checkOut": "11:30 am"
+    },
+    {
+      "id": 3,
+      "roomTypeName": "Business Class Double Room",
+      "price": 150,
+      "vat": 0.1,
+      "maxPersons": 2,
+      "checkIn": "12:00 pm",
+      "checkOut": "11:30 am"
+    },
+    {
+      "id": 4,
+      "roomTypeName": "Standard Single Room",
+      "price": 60,
+      "vat": 0.1,
+      "maxPersons": 1,
+      "checkIn": "12:00 pm",
+      "checkOut": "11:30 am"
+    },
+    {
+      "id": 5,
+      "roomTypeName": "Deluxe Single Room",
+      "price": 75,
+      "vat": 0.1,
+      "maxPersons": 1,
+      "checkIn": "12:00 pm",
+      "checkOut": "11:30 am"
+    },
+    {
+      "id": 6,
+      "roomTypeName": "Business Class Single Room",
+      "price": 90,
+      "vat": 0.1,
+      "maxPersons": 1,
+      "checkIn": "12:00 pm",
+      "checkOut": "11:30 am"
+    }
+  ]
+}

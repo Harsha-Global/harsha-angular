@@ -1,0 +1,175 @@
+<h4>New Booking</h4>
+<form [formGroup]="formGroup">
+  <!-- input -->
+  <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+    <input type="email" matInput placeholder="Enter Customer Email" required="required" formControlName="email" />
+    <mat-label>Email</mat-label>
+    <mat-hint align="end">Up to 30 characters</mat-hint>
+    <mat-icon matPrefix>email</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+    <input type="text" matInput placeholder="Enter Customer Name" required="required" formControlName="customerName" />
+    <mat-label>Customer Name</mat-label>
+    <mat-hint align="end">Up to 30 characters</mat-hint>
+    <mat-icon matPrefix>person</mat-icon>
+  </mat-form-field>
+
+  <!-- floatLabel: auto | always | never -->
+  <!-- align: start | end -->
+  <!-- appearance: legacy | standard | fill | outline -->
+
+  <!-- select -->
+  <!-- <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+  <mat-select required="required">
+    <mat-option value="Afghanistan">Afghanistan</mat-option>
+    <mat-option value="Australia">Australia</mat-option>
+    <mat-option value="Egypt">Egypt</mat-option>
+    <mat-option value="Ethiopia">Ethiopia</mat-option>
+    <mat-option value="Georgia">Georgia</mat-option>
+    <mat-option value="Germany">Germany</mat-option>
+    <mat-option value="Finland">Finland</mat-option>
+    <mat-option value="France">France</mat-option>
+    <mat-option value="India">India</mat-option>
+    <mat-option value="Iraq">Iraq</mat-option>
+    <mat-option value="Italy">Italy</mat-option>
+    <mat-option value="United Kingdom">United Kingdom</mat-option>
+    <mat-option value="United States">United States</mat-option>
+  </mat-select>
+  <mat-label>Country</mat-label>
+  <mat-hint align="end">Choose a country</mat-hint>
+  <mat-icon matPrefix>place</mat-icon>
+</mat-form-field> -->
+
+  <!-- <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+  <mat-select required="required">
+    <mat-option *ngFor="let country of countries" [value]="country.id">{{country.countryName}}</mat-option>
+  </mat-select>
+  <mat-label>Country</mat-label>
+  <mat-hint align="end">Choose a country</mat-hint>
+  <mat-icon matPrefix>place</mat-icon>
+</mat-form-field> -->
+
+  <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+    <mat-select required="required" formControlName="country">
+      <mat-optgroup label="A">
+        <mat-option value="Afghanistan">Afghanistan</mat-option>
+        <mat-option value="Australia">Australia</mat-option>
+      </mat-optgroup>
+
+      <mat-optgroup label="E">
+        <mat-option value="Egypt">Egypt</mat-option>
+        <mat-option value="Ethiopia">Ethiopia</mat-option>
+      </mat-optgroup>
+
+      <mat-optgroup label="G">
+        <mat-option value="Georgia">Georgia</mat-option>
+        <mat-option value="Germany">Germany</mat-option>
+      </mat-optgroup>
+
+      <mat-optgroup label="F">
+        <mat-option value="Finland">Finland</mat-option>
+        <mat-option value="France">France</mat-option>
+      </mat-optgroup>
+
+      <mat-optgroup label="I">
+        <mat-option value="India">India</mat-option>
+        <mat-option value="Iraq">Iraq</mat-option>
+        <mat-option value="Italy">Italy</mat-option>
+      </mat-optgroup>
+
+      <mat-optgroup label="U">
+        <mat-option value="United Kingdom">United Kingdom</mat-option>
+        <mat-option value="United States">United States</mat-option>
+      </mat-optgroup>
+    </mat-select>
+    <mat-label>Country</mat-label>
+    <mat-hint align="end">Choose a country</mat-hint>
+    <mat-icon matPrefix>place</mat-icon>
+  </mat-form-field>
+
+  <!-- Basic Button -->
+  <!-- <div class="mb">
+  <button mat-button>Save</button>
+  <button mat-button>Cancel</button>
+  <button mat-button>Delete</button>
+</div> -->
+
+  <!-- Color Variants -->
+  <!-- <div class="mb">
+  <button mat-button color="primary" class="mr">Save</button>
+  <button mat-button color="accent" class="mr">Cancel</button>
+  <button mat-button color="warn" class="mr">Delete</button>
+</div> -->
+
+  <!-- Flat Buttons -->
+  <!-- <div class="mb">
+  <button mat-flat-button color="primary" class="mr">Save</button>
+  <button mat-flat-button color="accent" class="mr">Cancel</button>
+  <button mat-flat-button color="warn" class="mr">Delete</button>
+</div> -->
+
+  <!-- Raised Buttons -->
+  <!-- <div class="mb">
+  <button mat-raised-button color="primary" class="mr">Save</button>
+  <button mat-raised-button color="accent" class="mr">Cancel</button>
+  <button mat-raised-button color="warn" class="mr">Delete</button>
+</div> -->
+
+  <!-- Stroked Buttons -->
+  <div class="mb">
+    <button mat-stroked-button color="primary" class="mr">Save</button>
+    <button mat-stroked-button color="accent" class="mr">Cancel</button>
+    <button mat-stroked-button color="warn" class="mr">Delete</button>
+  </div>
+
+  <div>
+    {{formGroup.value | json}}
+  </div>
+
+  <!-- disableRipple -->
+  <!-- <div class="mb">
+  <button mat-stroked-button color="primary" class="mr" disableRipple>Save</button>
+  <button mat-stroked-button color="accent" class="mr" disableRipple>Cancel</button>
+  <button mat-stroked-button color="warn" class="mr" disableRipple>Delete</button>
+</div> -->
+
+  <!-- Icon Buttons -->
+  <!-- <div class="mb">
+  <button mat-icon-button color="primary" class="mr">
+    <mat-icon>save</mat-icon>
+  </button>
+  <button mat-icon-button color="accent" class="mr">
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <button mat-icon-button color="warn" class="mr">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div> -->
+
+  <!-- Fab -->
+  <!-- <div class="mb">
+  <button mat-fab color="primary" class="mr">
+    <mat-icon>save</mat-icon>
+  </button>
+  <button mat-fab color="accent" class="mr">
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <button mat-fab color="warn" class="mr">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div> -->
+
+  <!-- Mini-Fab -->
+  <!-- <div class="mb">
+  <button mat-mini-fab color="primary" class="mr">
+    <mat-icon>save</mat-icon>
+  </button>
+  <button mat-mini-fab color="accent" class="mr">
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <button mat-mini-fab color="warn" class="mr">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div> -->
+</form>

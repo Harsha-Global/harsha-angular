@@ -1,0 +1,49 @@
+<form [formGroup]="formGroup">
+  <div class="form-container">
+    <h2 class="section-header" mat-dialog-title>
+      Change Dates
+      <mat-icon tabindex="-1" class="float-right hand-icon" matRipple>close</mat-icon>
+    </h2>
+
+    <div mat-dialog-content>
+
+      <!-- check in starts -->
+      <mat-form-field class="w-100" color="primary">
+        <mat-label>Check-In</mat-label>
+        <input type="text" matInput formControlName="checkIn" [matDatepicker]="checkInDatepicker" autocomplete="off">
+
+        <mat-datepicker-toggle [for]="checkInDatepicker" matSuffix>
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #checkInDatepicker></mat-datepicker>
+
+        <mat-hint align="end">Choose check-in date</mat-hint>
+        <mat-icon matPrefix class="mr">calendar_today</mat-icon>
+      </mat-form-field>
+      <!-- check in ends -->
+
+
+      <!-- check out starts -->
+      <mat-form-field class="w-100" color="primary">
+        <mat-label>Check-Out</mat-label>
+        <input type="text" matInput formControlName="checkOut" [matDatepicker]="checkOutDatepicker" autocomplete="off">
+
+        <mat-datepicker-toggle [for]="checkOutDatepicker" matSuffix>
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #checkOutDatepicker></mat-datepicker>
+
+        <mat-hint align="end">Choose check-out date</mat-hint>
+        <mat-icon matPrefix class="mr">calendar_today</mat-icon>
+      </mat-form-field>
+      <!-- check out ends -->
+
+      <div mat-dialog-actions class="mt mb" fxLayoutAlign="end center">
+        <button mat-stroked-button color="warn" class="mr">Cancel</button>
+        <button mat-flat-button color="primary">Save</button>
+      </div>
+    </div>
+  </div>
+</form>

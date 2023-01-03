@@ -1,0 +1,39 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+
+  <!-- left box of toolbar starts -->
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a mat-icon-button>
+      <mat-icon>home</mat-icon>
+    </a>
+    <span>Hotel Reservation</span>
+  </div>
+  <!-- left box of toolbar ends -->
+
+  <!-- center box of toolbar starts -->
+  <div>
+    <button type="button" mat-stroked-button (click)="showStatistics = !showStatistics" fxHide.lt-md="true">
+      <mat-icon>analytics</mat-icon>
+      <span class="ml mr">Statistics</span>
+      <mat-icon class="rotatable" [ngClass]="{ 'rotate-180': showStatistics}">keyboard_arrow_down</mat-icon>
+    </button>
+  </div>
+  <!-- center box of toolbar ends -->
+
+  <!-- right box of toolbar starts -->
+  <div>
+    <button type="button" mat-stroked-button class="mr" fxHide.lt-md="true">
+      <mat-icon>account_circle</mat-icon> User
+    </button>
+    <button type="button" mat-icon-button>
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button type="button" mat-icon-button>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+  </div>
+  <!-- right box of toolbar ends -->
+</mat-toolbar>

@@ -1,0 +1,138 @@
+<mat-grid-list [cols]="dashboardGridCols" gutterSize="20px" rowHeight="100px" class="dashboard-grid-list">
+
+  <!-- tile 1 starts -->
+  <mat-grid-tile fxLayout="row" class="dashboard-tile dashboard-tile-1 colorful-tile" fxLayoutAlign="start stretch" matRipple matTooltip="Total Bookings all time">
+    <div fxFlex="1 1 25%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+      <mat-icon>description</mat-icon>
+    </div>
+
+    <div fxFlex="1 1 75%" class="h-100 text-right" fxLayout="column" fxLayoutAlign="center start">
+      <div class="dashboard-tile-heading">Total Bookings</div>
+      <div class="dashboard-tile-sub-heading">{{8450 | number}}</div>
+    </div>
+  </mat-grid-tile>
+  <!-- tile 1 ends -->
+
+
+  <!-- tile 2 starts -->
+  <mat-grid-tile fxLayout="row" class="dashboard-tile dashboard-tile-2 colorful-tile" fxLayoutAlign="start stretch" matRipple matTooltip="Rooms available now">
+    <div fxFlex="1 1 25%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+      <mat-icon>hotel</mat-icon>
+    </div>
+
+    <div fxFlex="1 1 75%" class="h-100 text-right" fxLayout="column" fxLayoutAlign="center start">
+      <div class="dashboard-tile-heading">Rooms Available</div>
+      <div class="dashboard-tile-sub-heading">{{174 | number}}</div>
+    </div>
+  </mat-grid-tile>
+  <!-- tile 2 ends -->
+
+
+  <!-- tile 3 starts -->
+  <mat-grid-tile fxLayout="row" class="dashboard-tile dashboard-tile-3 colorful-tile" fxLayoutAlign="start stretch" matRipple matTooltip="New customers in this year">
+    <div fxFlex="1 1 25%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+      <mat-icon>group</mat-icon>
+    </div>
+
+    <div fxFlex="1 1 75%" class="h-100 text-right" fxLayout="column" fxLayoutAlign="center start">
+      <div class="dashboard-tile-heading">New Customers</div>
+      <div class="dashboard-tile-sub-heading">{{1252 | number}}</div>
+    </div>
+  </mat-grid-tile>
+  <!-- tile 3 ends -->
+
+
+  <!-- tile 4 starts -->
+  <mat-grid-tile fxLayout="row" class="dashboard-tile dashboard-tile-4 colorful-tile" fxLayoutAlign="start stretch" matRipple matTooltip="Total revenue all time">
+    <div fxFlex=" 1 1 25%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+      <mat-icon>attach_money</mat-icon>
+    </div>
+
+    <div fxFlex="1 1 75%" class="h-100 text-right" fxLayout="column" fxLayoutAlign="center start">
+      <div class="dashboard-tile-heading">Total Revenue</div>
+      <div class="dashboard-tile-sub-heading">{{2810 | currency}} k</div>
+    </div>
+  </mat-grid-tile>
+  <!-- tile 4 ends -->
+
+  <!-- tile 5 starts -->
+  <mat-grid-tile [colspan]="cardColspan" rowspan="4" class="dashboard-tile dashboard-tile-5 scroll">
+    <div fxFlex="1 1 100%" fxLayout="column">
+
+      <!-- first box starts -->
+      <div fxFlex="1 1 100%" fxLayout="row" fxLayoutAlign="start stretch">
+        <div fxFlex="1 1 50%" class="p-10 font-weight-bold text-large">Upcoming Bookings</div>
+        <div fxFlex="1 1 50%" class="text-right p-10">
+          <mat-icon matRipple class="hand-icon">more_vert</mat-icon>
+        </div>
+      </div>
+      <!-- first box ends -->
+
+      <!-- second box starts -->
+      <div fxFlex="1 1 100%" class="p-5">
+        <mat-accordion>
+
+          <mat-expansion-panel *ngFor="let booking of bookings">
+
+            <mat-expansion-panel-header matRipple>
+              <div class="w-100" fxLayout="row" fxLayoutAlign="space-between start" fxLayout.lt-md="column">
+                <mat-panel-title fxFlex="1 1 60%" fxFlex="1 1 100%" fxLayout="row" fxLayoutAlign="start center" class="text-large">
+                  <mat-icon>account_circle</mat-icon>
+                  <div class="text-blue ml">{{booking.guest1Name}}</div>
+                </mat-panel-title>
+
+                <mat-panel-description fxFlex="1 1 40%" fxFlex="1 1 100%">
+                  <div class="text-right w-100">Check-In: {{booking.checkIn | date: "mediumDate"}}</div>
+                </mat-panel-description>
+              </div>
+            </mat-expansion-panel-header>
+
+
+            <table class="w-100">
+              <tr>
+                <td class="w-25">Check-In:</td>
+                <td class="font-weight-bold p">{{booking.checkIn | date: "medium"}}</td>
+              </tr>
+              <tr>
+                <td class="w-25">Check-Out:</td>
+                <td class="font-weight-bold p">{{booking.checkOut | date: "medium"}}</td>
+              </tr>
+              <tr>
+                <td class="w-25">Status:</td>
+                <td class="font-weight-bold p">
+                  <span [ngClass]="{ 'red-text': booking.status == 'Not Paid', 'green-text': booking.status == 'Paid'}">{{booking.status}}</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="w-25">Room Type:</td>
+                <td class="font-weight-bold p">{{booking.roomType}}</td>
+              </tr>
+              <tr>
+                <td class="w-25">Phone:</td>
+                <td class="font-weight-bold p">{{booking.phone}}</td>
+              </tr>
+            </table>
+
+            <mat-action-row fxLayoutAlign="space-between start">
+              <button mat-button color="warn">
+                <mat-icon>delete</mat-icon>&nbsp;Delete
+              </button>
+
+              <button mat-button color="primary" class="mr">
+                <mat-icon>call</mat-icon>&nbsp;Call
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+      </div>
+      <!-- second box ends -->
+
+    </div>
+  </mat-grid-tile>
+  <!-- tile 5 ends -->
+
+  <mat-grid-tile class="dashboard-tile dashboard-tile-6" [colspan]="cardColspan" rowspan="4">
+    <div [chart]="columnChart"></div>
+  </mat-grid-tile>
+</mat-grid-list>

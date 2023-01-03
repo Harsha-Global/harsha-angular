@@ -1,0 +1,16 @@
+<div class="page-title" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lt-md="start start" fxLayout.lt-md="column" fxLayoutGap.lt-md="13px">
+  <div fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">New Booking</div>
+  <div fxFlex="1 1 50%" class="text-right" fxFlex.lt-md="1 1 100%"><a mat-stroked-button [routerLink]="[ '/bookings-list' ]">
+      <mat-icon>arrow_back</mat-icon>&nbsp;Back to Booking
+    </a></div>
+</div>
+
+<mat-vertical-stepper>
+  <mat-step label="Search for a hotel">one</mat-step>
+  <mat-step label="Choose a hotel">two</mat-step>
+  <mat-step label="Choose a Room">three</mat-step>
+  <mat-step label="Personal Information">four</mat-step>
+  <mat-step label="Guests Information">five</mat-step>
+  <mat-step label="Payment">six</mat-step>
+  <mat-step label="Finish">seven</mat-step>
+</mat-vertical-stepper>

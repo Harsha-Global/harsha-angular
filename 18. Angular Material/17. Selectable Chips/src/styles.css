@@ -1,0 +1,152 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.root
+{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.nav
+{
+  background-color: #22b0e9;
+  box-shadow: 0px 3px 2px 2px #000000;
+  flex: 1;
+}
+
+.container
+{
+  display: flex;
+  flex-direction: row;
+  flex: 11;
+}
+
+.sidebar
+{
+  background-color: #e7e7e7;
+  flex: 2;
+}
+
+.main
+{
+  background-color: #ffffff;
+  flex: 10;
+  padding: 12px;
+}
+
+.flex
+{
+  display: flex;
+}
+
+.flex>*
+{
+  flex: 1;
+  margin: 5px;
+}
+
+.mr
+{
+  margin-right: 6px !important;
+}
+
+.ml
+{
+  margin-left: 6px !important;
+}
+
+.mb
+{
+  margin-bottom: 10px !important;
+}
+
+.mt
+{
+  margin-top: 10px !important;
+}
+
+.w-100
+{
+  width: 100%;
+}
+
+
+.w-40
+{
+  width: 40%;
+}
+
+.w-30
+{
+  width: 30%;
+}
+
+.w-25
+{
+  width: 25%;
+}
+
+.w-20
+{
+  width: 20%;
+}
+
+.w-15
+{
+  width: 15%;
+}
+
+.w-5
+{
+  width: 5%;
+}
+
+.hand-icon
+{
+  cursor: pointer;
+}
+
+.grey
+{
+  color: #7c7b7b;
+}
+
+.hidden
+{
+  display: none;
+}
+
+.text-center
+{
+  text-align: center;
+}
+
+.text-italic
+{
+  font-style: italic;
+}
+
+.font-weight-bold
+{
+  font-weight: bold;
+}
+
+.margin-auto
+{
+  margin: auto;
+}
+
+.table-container
+{
+  min-height: 250px;
+  height: 250px;
+  overflow: auto;
+}
+
+.blue-back
+{
+  background-color: #197da5;
+}

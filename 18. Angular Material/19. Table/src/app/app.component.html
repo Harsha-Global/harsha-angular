@@ -1,0 +1,14 @@
+<div class="root">
+  <nav class="nav">
+    <h1>Hotel Reservation</h1>
+    <a [routerLink]="[ '/booking' ]">Booking</a>
+    &nbsp;
+    <a [routerLink]="[ '/booking-list' ]">Bookings List</a>
+  </nav>
+  <div class="container">
+    <div class="sidebar">sidebar</div>
+    <main class="main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

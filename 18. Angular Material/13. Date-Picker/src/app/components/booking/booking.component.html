@@ -1,0 +1,124 @@
+<h4>New Booking</h4>
+<form [formGroup]="formGroup">
+
+  <div class="flex">
+    <div class="box-1">
+
+      <!-- input -->
+      <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+        <input type="email" matInput placeholder="Enter Customer Email" formControlName="email" [errorStateMatcher]="customErrorStateMatcher" />
+        <mat-label>Email</mat-label>
+        <mat-hint align="end">Up to 30 characters</mat-hint>
+        <mat-icon matPrefix>email</mat-icon>
+
+        <mat-error *ngIf="getFormControl('email').hasError('required')" [innerHTML]="getErrorMessage('email', 'required')"></mat-error>
+
+        <mat-error *ngIf="getFormControl('email').hasError('email')" [innerHTML]="getErrorMessage('email', 'email')"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+        <input type="text" matInput placeholder="Enter Customer Name" formControlName="customerName" [errorStateMatcher]="customErrorStateMatcher" />
+        <mat-label>Customer Name</mat-label>
+        <mat-hint align="end">Up to 30 characters</mat-hint>
+        <mat-icon matPrefix>person</mat-icon>
+
+        <mat-error *ngIf="getFormControl('customerName').hasError('required')" [innerHTML]="getErrorMessage('customerName', 'required')"></mat-error>
+
+        <mat-error *ngIf="getFormControl('customerName').hasError('pattern')" [innerHTML]="getErrorMessage('customerName', 'pattern')"></mat-error>
+
+        <mat-error *ngIf="getFormControl('customerName').hasError('maxlength')" [innerHTML]="getErrorMessage('customerName', 'maxlength')"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" floatLabel="auto" appearance="standard" color="primary">
+        <mat-select formControlName="country">
+          <mat-option *ngFor="let country of countries" [value]="country.id">{{country.countryName}}</mat-option>
+        </mat-select>
+        <mat-label>Country</mat-label>
+        <mat-hint align="end">Choose a country</mat-hint>
+        <mat-icon matPrefix>place</mat-icon>
+
+        <mat-error *ngIf="getFormControl('country').hasError('required')" [innerHTML]="getErrorMessage('country', 'required')"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" color="primary">
+        <input type="text" matInput placeholder="City" formControlName="city" [matAutocomplete]="citiesAutocomplete" />
+        <mat-label>City</mat-label>
+        <mat-hint align="end">Choose or type a city</mat-hint>
+        <mat-icon matPrefix>explore</mat-icon>
+
+        <mat-autocomplete #citiesAutocomplete="matAutocomplete">
+          <mat-option *ngIf="isCitiesLoading">Loading...</mat-option>
+          <mat-option *ngFor="let city of cities" [value]="city.cityName">{{city.cityName}}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <div class="ml mt">
+        <mat-checkbox color="primary" formControlName="receiveNewsLetters">Receive News Letters</mat-checkbox>
+      </div>
+
+      <div class="ml mt mb">
+        <mat-label>Hobbies:</mat-label>
+
+        <div>
+          <mat-checkbox formControlName="allHobbies" (change)="onAllHobbiesCheckBoxChange()" [indeterminate]="!allHobbiesSelected() && !noHobbiesSelected()">All</mat-checkbox>
+        </div>
+
+        <div formArrayName="hobbies">
+          <div *ngFor="let hobby of hobbiesFormArray.controls; let i = index">
+            <mat-checkbox [formControl]="hobby" color="primary" (change)="onHobbyChange(i)">{{hobbies[i].hobbyName}}</mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <!-- radio button -->
+      <div class="ml mt mb">
+        <mat-radio-group formControlName="gender">
+          <mat-label class="mr">Gender:</mat-label>
+          <mat-radio-button value="male" class="mr">Male</mat-radio-button>
+          <mat-radio-button value="female" class="mr">Female</mat-radio-button>
+          <mat-radio-button value="others" class="mr">Others</mat-radio-button>
+          <mat-error *ngIf="getFormControl('gender').hasError('required') && getFormControl('gender').touched" [innerHTML]="getErrorMessage('gender', 'required')"></mat-error>
+        </mat-radio-group>
+      </div>
+
+    </div>
+    <!-- end of box 1-->
+
+    <div class="box-2">
+      <!-- date picker -->
+      <mat-form-field class="w-100">
+        <mat-label>Date of Birth:</mat-label>
+        <input type="text" matInput [matDatepicker]="dobDatepicker" formControlName="dateOfBirth" (dateChange)="onDateChange()">
+        <!-- [matDatepickerFilter]="dateFilter"-->
+        <!-- [min]="minDate" [max]="maxDate" -->
+
+        <mat-datepicker-toggle matSuffix [for]="dobDatepicker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #dobDatepicker startView="month"></mat-datepicker>
+        <!-- startView: month | year | multi-year -->
+        <!-- [startAt]="startDate" -->
+
+        <!-- touchUi -->
+        <mat-hint align="end">{{dateHint}}</mat-hint>
+        <mat-icon matPrefix>calendar_today</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+
+
+  <!-- Stroked Buttons -->
+  <div class="mb mt">
+    <button mat-stroked-button color="primary" class="mr">Save</button>
+    <button mat-stroked-button color="accent" class="mr" type="button">Cancel</button>
+    <button mat-stroked-button color="warn" class="mr" type="button">Delete</button>
+  </div>
+
+  <div>
+    {{formGroup.value | json}}
+  </div>
+
+</form>
