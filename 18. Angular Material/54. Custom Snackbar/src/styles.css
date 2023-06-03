@@ -366,6 +366,7 @@ th.mat-header-cell:first-of-type,td.mat-cell:first-of-type,td.mat-footer-cell:fi
 .notification-panel
 {
   background-color: #e8e7e7;
+  --mdc-snackbar-container-color: #e8e7e7 !important; /* background color of panel (useful if "backgrond-color" property doesn't work) */
   padding: 0px !important;
   opacity: 0.94 !important;
   border-left: 3px solid #918f8f;
