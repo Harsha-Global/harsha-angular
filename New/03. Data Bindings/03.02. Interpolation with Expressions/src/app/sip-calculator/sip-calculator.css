@@ -1,0 +1,75 @@
+.calculator-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.calculator-container h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.input-summary {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.input-summary h3 {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.input-summary p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.results-section h3 {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.result-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.result-card {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.result-card .label {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.result-card .amount {
+  color: #2196F3;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.input-summary table
+{
+  width: 100%;
+}
+
+.input-summary table td
+{
+  padding: 4px;
+  width: 35%;
+}
+
+.input-summary table th
+{
+  text-align: left;
+}

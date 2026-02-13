@@ -1,0 +1,82 @@
+<div class="calculator-container">
+  <img [src]="logoUrl" alt="Calculator logo" />
+  <h2>{{ title }}</h2>
+
+  <div class="input-summary">
+    <h3>Investment Details</h3>
+    <table>
+      <tr>
+        <td><label>Monthly SIP Amount ($):</label></td>
+        <td>
+            <input type="number" [value]="monthlyAmount" (input)="updateMonthlyAmount($event)" (focus)="onFieldFocus('Monthly Amount')" (blur)="onFieldBlur()" />
+        </td>
+      </tr>
+      <tr>
+        <td><label>Investment Period (years):</label></td>
+        <td>
+            <input type="number" [value]="investmentPeriod" (input)="updatePeriod($event)" (change)="onPeriodComplete($event)" (focus)="onFieldFocus('Investment Period')" (blur)="onFieldBlur()" />
+        </td>
+      </tr>
+      <tr>
+        <td><label>Expected Annual Return (%):</label></td>
+        <td>
+            <input type="number" [value]="expectedReturnRate" (input)="updateReturnRate($event)" (focus)="onFieldFocus('Expeced Annual Return')" (blur)="onFieldBlur()" />
+        </td>
+      </tr>
+    </table>
+
+    <p class="editing-hint">Currently editing: {{currentlyEditing}}</p>
+  </div>
+
+
+  <div class="amount-controls">
+    <button (click)="adjustAmount(-1000)">- $1000</button>
+    <button (click)="adjustAmount(1000)">+ $1000</button>
+  </div>
+
+  <div class="results-section">
+    <h3>Calculated Returns</h3>
+
+    <div class="result-cards">
+      <div class="result-card">
+        <div class="label">Total Investment</div>
+        <div class="amount">${{ totalInvestment }}</div>
+      </div>
+
+      <div class="result-card">
+        <div class="label">Estimated Returns</div>
+        <div class="amount">${{ estimatedReturns }}</div>
+      </div>
+
+      <div class="result-card">
+        <div class="label">Maturity Amount</div>
+        <div class="amount">${{ maturityAmount }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="additional-info">
+    <h3>Additional Information</h3>
+    <p>
+      Total months of investment: <b>{{ investmentPeriod * 12 }}</b>
+    </p>
+    <p>
+      Investment duration: <b>{{ investmentPeriod > 5 ? 'Long term' : 'Short term' }}</b>
+    </p>
+    <p>
+      Yearly investment amount: <b>${{ calculateYearlyInvestment() }}</b>
+    </p>
+    <p>Fund name length: {{ fundName?.length }}</p>
+  </div>
+
+  <div class="actions">
+    <button [disabled]="monthlyAmount <= 0" [title]="buttonTooltip" (click)="calculateReturns()">Calculate Returns</button>
+
+    <div>
+      <input type="checkbox" [checked]="expectedReturnRate > 10" id="highReturnCheckbox" />
+      <label for="highReturnCheckbox">High return investment</label>
+    </div>
+
+    <button (click)="showEventDetails($event)">Show Event Details</button>
+  </div>
+</div>

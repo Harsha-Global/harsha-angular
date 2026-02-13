@@ -1,0 +1,45 @@
+.about-container {
+  padding: 60px 20px;
+  background: #f8f9fa;
+  min-height: 400px;
+}
+
+.about-container h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.about-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-content, .mission {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.about-content h3, .mission h3 {
+  color: #667eea;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.about-content p, .mission p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .about-wrapper {
+    grid-template-columns: 1fr;
+  }
+}

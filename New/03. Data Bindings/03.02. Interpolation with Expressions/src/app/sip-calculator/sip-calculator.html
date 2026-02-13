@@ -1,0 +1,50 @@
+<div class="calculator-container">
+    <h2>{{title}}</h2>
+
+    <div class="input-summary">
+        <h3>Investment Details</h3>
+        <table>
+            <tr>
+                <td>Monthly SIP Amount:</td>
+                <th>${{monthlyAmount}}</th>
+            </tr>
+            <tr>
+                <td>Investment Period:</td>
+                <th>{{investmentPeriod + ' years = ' + (investmentPeriod * 12) + ' months'}}</th>
+            </tr>
+            <tr>
+                <td>Expected Annual Return:</td>
+                <th>{{expectedReturnRate}}%</th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="results-section">
+        <h3>Calculated Returns</h3>
+
+        <div class="result-cards">
+            <div class="result-card">
+                <div class="label">Total Investment</div>
+                <div class="amount">${{totalInvestment}}</div>
+            </div>
+
+            <div class="result-card">
+                <div class="label">Estimated Returns</div>
+                <div class="amount">${{estimatedReturns}}</div>
+            </div>
+
+            <div class="result-card">
+                <div class="label">Maturity Amount</div>
+                <div class="amount">${{maturityAmount}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="additional-info">
+        <h3>Additional Information</h3>
+        <p>Total months of investment: <b>{{investmentPeriod * 12}}</b></p>
+        <p>Investment duration: <b>{{investmentPeriod > 5? 'Long term' : 'Short term'}}</b></p>
+        <p>Yearly investment amount: <b>${{calculateYearlyInvestment()}}</b></p>
+        <p>Fund name length: {{fundName?.length}}</p>
+    </div>
+</div>

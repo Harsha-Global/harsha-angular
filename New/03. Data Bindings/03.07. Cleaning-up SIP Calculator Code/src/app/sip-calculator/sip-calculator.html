@@ -1,0 +1,69 @@
+<div class="calculator-container">
+  <h2>{{ title }}</h2>
+
+  <div class="input-summary">
+    <h3>Investment Details</h3>
+    <table>
+      <tr>
+        <td><label>Monthly SIP Amount ($):</label></td>
+        <td>
+            <input type="number" [(ngModel)]="monthlyAmount" (focus)="onFieldFocus('Monthly Amount')" (blur)="onFieldBlur()" />
+        </td>
+      </tr>
+      <tr>
+        <td><label>Investment Period (years):</label></td>
+        <td>
+            <input type="number" [(ngModel)]="investmentPeriod" (change)="onPeriodComplete($event)" (focus)="onFieldFocus('Investment Period')" (blur)="onFieldBlur()" />
+        </td>
+      </tr>
+      <tr>
+        <td><label>Expected Annual Return (%):</label></td>
+        <td>
+            <input type="number" [(ngModel)]="expectedReturnRate" (focus)="onFieldFocus('Expeced Annual Return')" (blur)="onFieldBlur()" />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="amount-controls">
+   <button [disabled]="monthlyAmount <= 0" [title]="buttonTooltip" (click)="calculateReturns()">Calculate Returns</button>
+  </div>
+
+  <div class="results-section">
+    <h3>Calculated Returns</h3>
+
+    <div class="result-cards">
+      <div class="result-card">
+        <div class="label">Total Investment</div>
+        <div class="amount">${{ totalInvestment }}</div>
+      </div>
+
+      <div class="result-card">
+        <div class="label">Estimated Returns</div>
+        <div class="amount">${{ estimatedReturns }}</div>
+      </div>
+
+      <div class="result-card">
+        <div class="label">Maturity Amount</div>
+        <div class="amount">${{ maturityAmount }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="additional-info">
+    <h3>Additional Information</h3>
+    <p>
+      Total months of investment: <b>{{ investmentPeriod * 12 }}</b>
+    </p>
+    <p>
+      Investment duration: <b>{{ investmentPeriod > 5 ? 'Long term' : 'Short term' }}</b>
+    </p>
+    <p>
+      Yearly investment amount: <b>${{ calculateYearlyInvestment() }}</b>
+    </p>
+  </div>
+
+  <div class="actions">
+    
+  </div>
+</div>

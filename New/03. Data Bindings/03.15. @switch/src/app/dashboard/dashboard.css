@@ -1,0 +1,203 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard-container h2 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.metrics-section {
+  margin-bottom: 30px;
+}
+
+.metric-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.metric-card {
+  flex: 1;
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.metric-card .label {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.metric-card .value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.status-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.status-indicator {
+  font-size: 18px;
+  padding: 10px;
+}
+
+.employee-section {
+  margin-bottom: 30px;
+}
+
+.employee-section h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.success {
+  background-color: lightgreen;
+  color: darkgreen;
+  padding: 10px;
+}
+
+.warning {
+  background-color: lightyellow;
+  color: darkorange;
+  padding: 10px;
+}
+
+.danger {
+  background-color: lightpink;
+  color: darkred;
+  padding: 10px;
+}
+
+.highlight {
+  border: 2px solid gold;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-large {
+  font-size: 24px;
+}
+
+.badge {
+  background-color: gold;
+  color: darkbrown;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.warning-message {
+  background-color: lightyellow;
+  color: darkred;
+  padding: 15px;
+  border-left: 4px solid red;
+  margin: 20px 0;
+}
+
+.badge-warning {
+  background-color: lightcoral;
+  color: darkred;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.success-message {
+  background-color: lightgreen;
+  color: darkgreen;
+  padding: 15px;
+  border-left: 4px solid green;
+  margin: 20px 0;
+}
+
+.employee-card {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.employee-card h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.employee-card p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.high-salary {
+  border: 2px solid gold;
+  background-color: #fffef0;
+}
+
+.high-performer {
+  background-color: #e8f5e9;
+  border-left: 4px solid green;
+}
+
+.first-employee {
+  border-top: 3px solid green;
+}
+
+.last-employee {
+  border-bottom: 3px solid red;
+}
+
+.even-row {
+  background-color: #e3f2fd;
+}
+
+.rank-badge {
+  background-color: gold;
+  color: #333;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.performance-section {
+  margin-top: 20px;
+}
+
+.alert-danger {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 4px solid #c62828;
+}
+
+.alert-warning {
+  background-color: #fff3e0;
+  color: #e65100;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 4px solid #e65100;
+}
+
+.alert-success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 4px solid #2e7d32;
+}
+
