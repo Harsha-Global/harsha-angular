@@ -1,0 +1,47 @@
+.counter-controls {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+.counter-controls h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.buttons button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn-decrement {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-increment {
+  background-color: #27ae60;
+  color: white;
+}
+
+.btn-reset {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.buttons button:hover {
+  opacity: 0.9;
+}

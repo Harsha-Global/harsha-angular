@@ -1,0 +1,92 @@
+<div class="container">
+ <h2>Angular Built-in Pipes Demo</h2>
+
+ <!-- Date Pipe -->
+  <section>
+   <h2>Date Pipe</h2>
+   <p>Raw Date: {{sampleDate}}</p>
+   <p>Default formatted: {{sampleDate | date}}</p>
+   <p>Short format: {{sampleDate | date: 'short' }}</p>
+   <p>Medium format: {{sampleDate | date: 'medium' }}</p>
+   <p>Long format: {{sampleDate | date: 'long' }}</p>
+   <p>Full format: {{sampleDate | date: 'full' }}</p>
+
+   <p>Short date: {{sampleDate | date: 'shortDate' }}</p>
+   <p>Medium date: {{sampleDate | date: 'mediumDate' }}</p>
+   <p>Long date: {{sampleDate | date: 'longDate' }}</p>
+   <p>Full date: {{sampleDate | date: 'fullDate' }}</p>
+
+   <p>Short time: {{sampleDate | date: 'shortTime' }}</p>
+   <p>Medium time: {{sampleDate | date: 'mediumTime' }}</p>
+
+   <p>Custom format dd/MM/yyyy: {{sampleDate | date: 'dd/MM/yyyy' }}</p>
+   <p>Custom format EEEE, MMM d, yyyy: {{sampleDate | date: 'EEEE, MMM d, yyyy' }}</p>
+   <p>Custom format hh:mm:ss a: {{sampleDate | date: 'hh:mm:ss a' }}</p>
+  </section>
+
+  <!-- Text transformation pipes -->
+  <section>
+   <h2>Text Transformation Pipes</h2>
+   <p>Original text: {{message}}</p>
+   <p>Uppercase: {{message | uppercase}}</p>
+   <p>Lowercase: {{message | lowercase}}</p>
+   <p>Titlecase: {{message | titlecase}}</p>
+  </section>
+
+  <!-- Number Pipe -->
+  <section>
+   <h2>Number Pipe</h2>
+   <p>Raw number: {{price}}</p>
+   <p>Formatted with 1.2-2: {{price | number: '1.2-2'}}</p>
+   <p>Formatted with 3.0-0: {{price | number: '3.0-0'}}</p>
+   <p>Formatted with 1.0-4: {{price | number: '1.0-4'}}</p>
+  </section>
+
+  <!-- Currency Pipe -->
+  <section>
+   <h2>Currency Pipe</h2>
+   <p>Default currency: {{price | currency}}</p>
+   <p>Euros: {{price | currency : 'EUR'}}</p>
+   <p>USD as code: {{price | currency : 'USD':'code'}}</p>
+   <p>Indian Rupees: {{price | currency : 'INR':'symbol'}}</p>
+   <p>USD with custom decimals: {{price | currency : 'USD':'symbol':'1.0-0'}}</p>
+  </section>
+
+  <!-- Percent Pipe -->
+  <section>
+   <h2>Percent Pipe</h2>
+   <p>Raw decimal: {{completionRate}}</p>
+   <p>As percentage: {{completionRate | percent}}</p>
+   <p>As whole percent: {{completionRate | percent : '1.0-2'}}</p>
+  </section>
+
+  <!-- Slice Pipe -->
+  <section>
+   <h2>Slice Pipe</h2>
+   <p>First 10 characters: {{message | slice: 0:10}}</p>
+   <p>Characters 8 to 15 characters: {{message | slice: 8:15}}</p>
+   <p>Last 8 characters: {{message | slice: -8}}</p>
+  </section>
+
+  <!-- JSON pipe -->
+  <section>
+   <h2>JSON pipe</h2>
+   <p>JSON: {{user | json}}</p>
+  </section>
+
+  <!-- Pipe Chaining -->
+  <section>
+   <h2>Pipe Chaining</h2>
+   <p>Lowercase then slice first 20: {{message | lowercase | slice:0:20}}</p>
+   <p>Lowercase then slice then uppercase: {{message | lowercase | slice:0:15 | uppercase}}</p>
+  </section>
+
+  <!-- Custom Truncate Pipe -->
+  <section>
+   <h2>Custom Truncate Pipe</h2>
+   <p>Original text: {{description}}</p>
+   <p>Truncated at 50: {{description | truncate}}</p>
+   <p>Truncated at 30: {{description | truncate:30}}</p>
+   <p>Truncated at 80: {{description | truncate:80}}</p>
+  </section>
+</div>

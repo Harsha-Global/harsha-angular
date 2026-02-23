@@ -1,0 +1,19 @@
+.counter-display {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.counter-display h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.count-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #3498db;
+  margin: 0;
+}

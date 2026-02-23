@@ -1,0 +1,19 @@
+.counter-status {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 400px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.counter-status h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.status-label {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+}
