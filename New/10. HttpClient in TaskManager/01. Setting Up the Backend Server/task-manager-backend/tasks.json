@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "title": "Complete Angular Assignment",
+    "description": "Finish the task manager application with all requirements including http integration",
+    "category": "education",
+    "priority": "high",
+    "dueDate": "2030-12-15",
+    "status": "in-progress",
+    "createdAt": "2030-12-01T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "title": "Buy Groceries",
+    "description": "Milk, Bread, Eggs, Vegetables, Fruits",
+    "category": "shopping",
+    "priority": "medium",
+    "dueDate": "2030-12-10",
+    "status": "pending",
+    "createdAt": "2030-12-05T08:30:00.000Z"
+  },
+  {
+    "id": 3,
+    "title": "Team Meeting",
+    "description": "Discuss Q1 project roadmap and assign responsibilities",
+    "category": "work",
+    "priority": "high",
+    "dueDate": "2030-12-08",
+    "status": "completed",
+    "createdAt": "2030-12-03T14:00:00.000Z",
+    "completedAt": "2030-12-08T16:30:00.000Z"
+  },
+  {
+    "id": 4,
+    "title": "Morning Jog",
+    "description": "30 minutes jogging in the park",
+    "category": "health",
+    "priority": "low",
+    "dueDate": "2030-12-09",
+    "status": "pending",
+    "createdAt": "2030-12-04T06:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "title": "Pay Electricity Bill",
+    "description": "Pay the monthly electricity bill before due date",
+    "category": "finance",
+    "priority": "high",
+    "dueDate": "2030-12-12",
+    "status": "pending",
+    "createdAt": "2030-12-02T09:00:00.000Z"
+  },
+  {
+    "id": 6,
+    "title": "Read JavaScript Book",
+    "description": "Complete chapters 5-8 of Eloquent JavaScript",
+    "category": "education",
+    "priority": "medium",
+    "dueDate": "2030-12-20",
+    "status": "in-progress",
+    "createdAt": "2030-12-01T11:00:00.000Z"
+  },
+  {
+    "id": 7,
+    "title": "Birthday Gift for Mom",
+    "description": "Buy a nice gift for mom's birthday next week",
+    "category": "personal",
+    "priority": "high",
+    "dueDate": "2030-12-14",
+    "status": "pending",
+    "createdAt": "2030-12-05T15:00:00.000Z"
+  },
+  {
+    "id": 8,
+    "title": "Fix Kitchen Tap",
+    "description": "The kitchen tap is leaking, need to call a plumber or fix it",
+    "category": "other",
+    "priority": "medium",
+    "dueDate": "2030-12-11",
+    "status": "pending",
+    "createdAt": "2030-12-06T12:00:00.000Z"
+  }
+]

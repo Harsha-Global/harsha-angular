@@ -1,0 +1,286 @@
+<div class="employee-list-container">
+
+ <!-- Header Starts -->
+ <div class="header">
+  <h1>Employee Directory</h1>
+  <p>Manage and view all employees in your organization</p>
+ </div>
+ <!-- Header Ends -->
+
+ <!-- Toolbar Starts -->
+ <div class="toolbar">
+  <div class="search-box">
+   <input type="text" placeholder="Search by name, email, or department..." (input)="onSearch($any($event.target).value)" />
+  </div>
+
+  <!-- Filters Starts -->
+  <div class="filters">
+
+   <!-- Department Filter Starts -->
+   <select (change)="onDepartmentFilter($any($event.target).value)">
+    <option value="">All Departments</option>
+    @for (department of departments; track $index)
+    {
+     <option [value]="department">{{department}}</option>
+    }
+   </select>
+   <!-- Department Filter Ends -->
+
+   <!-- Status Filter Starts -->
+   <select (change)="onStatusFilter($any($event.target).value)">
+    <option value="">All Statuses</option>
+    @for (status of statuses; track $index)
+    {
+     <option [value]="status">{{status}}</option>
+    }
+   </select>
+   <!-- Status Filter Ends -->
+
+   <!-- Status Location Starts -->
+   <select (change)="onLocationFilter($any($event.target).value)">
+    <option value="">All Locations</option>
+    @for (location of locations; track $index)
+    {
+     <option [value]="location">{{location}}</option>
+    }
+   </select>
+   <!-- Status Filter Ends -->
+  </div>
+  <!-- Filters Ends -->
+ </div>
+ <!-- Toolbar Ends -->
+
+
+ <!-- Results Count Starts -->
+ <div class="results-count">
+  @if (filteredCount > 0)
+  {
+   Showing {{rangeStart}} to {{rangeEnd}} of {{filteredCount}} employees
+  }
+  @else
+  {
+   No employees found
+  }
+ </div>
+ <!-- Results Count Ends -->
+
+
+ <!-- Loading State Starts -->
+ @if (isLoading)
+ {
+  <div class="loading-container">
+   <div class="loading-spinner"></div>
+   <p>Loading employeees...</p>
+  </div>
+ }
+ <!-- Loading State Ends -->
+ @else
+ {
+  <!-- Table Container Starts -->
+  <div class="table-container">
+   <table class="employee-table">
+
+    <!-- Table Head Starts -->
+    <thead>
+     <tr>
+
+      <th class="sortable" (click)="onSort('firstName')">
+       Employee
+       @if (sortColumn === 'firstName')
+       {
+        <span class="sort-indicator">
+         @if (sortDirection === 'asc')
+         {
+          ↑
+         }
+         @else
+         {
+          ↓
+         }
+        </span>
+       }
+      </th>
+
+      <th class="sortable" (click)="onSort('email')">
+       Email
+       @if (sortColumn === 'email')
+       {
+        <span class="sort-indicator">
+         @if (sortDirection === 'asc')
+         {
+          ↑
+         }
+         @else
+         {
+          ↓
+         }
+        </span>
+       }
+      </th>
+
+      <th class="sortable" (click)="onSort('department')">
+       Department
+       @if (sortColumn === 'department')
+       {
+        <span class="sort-indicator">
+         @if (sortDirection === 'asc')
+         {
+          ↑
+         }
+         @else
+         {
+          ↓
+         }
+        </span>
+       }
+      </th>
+
+      <th class="sortable" (click)="onSort('designation')">
+       Designation
+       @if (sortColumn === 'designation')
+       {
+        <span class="sort-indicator">
+         @if (sortDirection === 'asc')
+         {
+          ↑
+         }
+         @else
+         {
+          ↓
+         }
+        </span>
+       }
+      </th>
+
+      <th class="sortable" (click)="onSort('location')">
+       Location
+       @if (sortColumn === 'location')
+       {
+        <span class="sort-indicator">
+         @if (sortDirection === 'asc')
+         {
+          ↑
+         }
+         @else
+         {
+          ↓
+         }
+        </span>
+       }
+      </th>
+
+      <th class="sortable" (click)="onSort('status')">
+       Status
+       @if (sortColumn === 'status')
+       {
+        <span class="sort-indicator">
+         @if (sortDirection === 'asc')
+         {
+          ↑
+         }
+         @else
+         {
+          ↓
+         }
+        </span>
+       }
+      </th>
+
+      <th class="sortable" (click)="onSort('salary')">
+       Salary
+       @if (sortColumn === 'salary')
+       {
+        <span class="sort-indicator">
+         @if (sortDirection === 'asc')
+         {
+          ↑
+         }
+         @else
+         {
+          ↓
+         }
+        </span>
+       }
+      </th>
+
+      <th class="sortable" (click)="onSort('joinDate')">
+       Join Date
+       @if (sortColumn === 'joinDate')
+       {
+        <span class="sort-indicator">
+         @if (sortDirection === 'asc')
+         {
+          ↑
+         }
+         @else
+         {
+          ↓
+         }
+        </span>
+       }
+      </th>
+
+      <th>Actions</th>
+     </tr>
+    </thead>
+    <!-- Table Head Ends -->
+
+    <!-- Table Body Starts -->
+    <tbody>
+     @for(employee of employees; track employee.id)
+     {
+      <tr>
+
+       <!-- Employee Name & Avatar Starts -->
+       <td>
+        <div class="employee-info">
+         <img [src]="employee.avatar" [alt]="employee.firstName + ' ' + employee.lastName" class="avatar" />
+         <span class="employee-name">
+          {{employee.firstName}}
+          {{employee.lastName}}
+         </span>
+        </div>
+       </td>
+       <!-- Employee Name & Avatar Ends -->
+
+       <!-- Email -->
+       <td>{{employee.email}}</td>
+
+       <!-- Department -->
+       <td>{{employee.department}}</td>
+
+       <!-- Designation -->
+       <td>{{employee.designation}}</td>
+
+       <!-- Location -->
+       <td>{{employee.location}}</td>
+
+       <!-- Status -->
+       <td>
+        <span class="status-badge" [class]="'status-' + employee.status">
+         {{employee.status}}
+        </span>
+       </td>
+
+       <!-- Salary -->
+       <td>${{employee.salary | number}}</td>
+
+       <!-- Join Date -->
+       <td>{{employee.joinDate | date: 'mediumDate'}}</td>
+
+       <!-- Actions -->
+       <td>
+        <div class="actions">
+         <button class="btn-view">View</button>
+         <button class="btn-delete">Delete</button>
+        </div>
+       </td>
+      </tr>
+     }
+    </tbody>
+    <!-- Table Body Ends -->
+   </table>
+  </div>
+  <!-- Table Container Ends -->
+ }
+</div>

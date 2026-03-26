@@ -1,0 +1,115 @@
+<div class="employee-list-container">
+
+ <!-- Header Starts -->
+ <div class="header">
+  <h1>Employee Directory</h1>
+  <p>Manage and view all employees in your organization</p>
+ </div>
+ <!-- Header Ends -->
+
+ <!-- Toolbar Starts -->
+ <div class="toolbar">
+  <div class="search-box">
+   <input type="text" placeholder="Search by name, email, or department..." (input)="onSearch($any($event.target).value)" />
+  </div>
+ </div>
+ <!-- Toolbar Ends -->
+
+
+ <!-- Results Count Starts -->
+ <div class="results-count">
+  Showing {{employees.length}} of {{allEmployees.length}} employees
+ </div>
+ <!-- Results Count Ends -->
+
+
+ <!-- Loading State Starts -->
+ @if (isLoading)
+ {
+  <div class="loading-container">
+   <div class="loading-spinner"></div>
+   <p>Loading employeees...</p>
+  </div>
+ }
+ <!-- Loading State Ends -->
+ @else
+ {
+  <!-- Table Container Starts -->
+  <div class="table-container">
+   <table class="employee-table">
+
+    <!-- Table Head Starts -->
+    <thead>
+     <tr>
+      <th>Employee</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Designation</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Salary</th>
+      <th>Join Date</th>
+      <th>Actions</th>
+     </tr>
+    </thead>
+    <!-- Table Head Ends -->
+
+    <!-- Table Body Starts -->
+    <tbody>
+     @for(employee of employees; track employee.id)
+     {
+      <tr>
+
+       <!-- Employee Name & Avatar Starts -->
+       <td>
+        <div class="employee-info">
+         <img [src]="employee.avatar" [alt]="employee.firstName + ' ' + employee.lastName" class="avatar" />
+         <span class="employee-name">
+          {{employee.firstName}}
+          {{employee.lastName}}
+         </span>
+        </div>
+       </td>
+       <!-- Employee Name & Avatar Ends -->
+
+       <!-- Email -->
+       <td>{{employee.email}}</td>
+
+       <!-- Department -->
+       <td>{{employee.department}}</td>
+
+       <!-- Designation -->
+       <td>{{employee.designation}}</td>
+
+       <!-- Location -->
+       <td>{{employee.location}}</td>
+
+       <!-- Status -->
+       <td>
+        <span class="status-badge" [class]="'status-' + employee.status">
+         {{employee.status}}
+        </span>
+       </td>
+
+       <!-- Salary -->
+       <td>${{employee.salary | number}}</td>
+
+       <!-- Join Date -->
+       <td>{{employee.joinDate | date: 'mediumDate'}}</td>
+
+       <!-- Actions -->
+       <td>
+        <div class="actions">
+         <button class="btn-view">View</button>
+         <button class="btn-delete">Delete</button>
+        </div>
+       </td>
+      </tr>
+     }
+    </tbody>
+    <!-- Table Body Ends -->
+   </table>
+  </div>
+  <!-- Table Container Ends -->
+ }
+</div>

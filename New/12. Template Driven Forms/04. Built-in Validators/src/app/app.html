@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Registration Form</h1>
+
+  <form #registrationForm="ngForm">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" [(ngModel)]="username" name="username" #usernameRef="ngModel" required minlength="3" maxlength="20" />
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="email" name="email" required email />
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" [(ngModel)]="password" name="password" required minlength="6" />
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+<pre>
+Form value: {{registrationForm.value | json}}
+Form Valid: {{registrationForm.valid}}
+Form Invalid: {{registrationForm.invalid}}
+Form Touched: {{registrationForm.touched}}
+Form Untouched: {{registrationForm.untouched}}
+Form Dirty: {{registrationForm.dirty}}
+Form Pristine: {{registrationForm.pristine}}
+
+Username Control:
+Control value: {{usernameRef.value}}
+Control Valid: {{usernameRef.valid}}
+Control Invalid: {{usernameRef.invalid}}
+Control Touched: {{usernameRef.touched}}
+Control Untouched: {{usernameRef.untouched}}
+Control Dirty: {{usernameRef.dirty}}
+Control Pristine: {{usernameRef.pristine}}
+</pre>
+</div>

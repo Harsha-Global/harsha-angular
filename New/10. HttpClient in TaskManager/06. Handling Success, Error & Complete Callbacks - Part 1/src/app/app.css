@@ -1,0 +1,4 @@
+.app-container {
+  min-height: calc(100vh - 60px);
+  background-color: #f5f7fa;
+}

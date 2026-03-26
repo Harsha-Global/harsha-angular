@@ -1,0 +1,14 @@
+{
+  "name": "employee-directory-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Employee Directory Angular project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
