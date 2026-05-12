@@ -1,0 +1,173 @@
+<div class="container">
+  <h1>Registration Form</h1>
+
+  <div class="action-buttons">
+    <button type="button" (click)="fillSampleData()">Fill Sample Data</button>
+    <button type="button" (click)="fillAddressOnly()">Fill Address Only</button>
+  </div>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" formControlName="username" />
+
+      <div class="error-messages">
+        @if (username.errors?.['required'] && username.touched)
+        {
+          <span>Username is required.</span>
+        }
+        @if (username.errors?.['minlength'] && username.touched)
+        {
+          <span>Username must be at least 3 characters.</span>
+        }
+        @if (username.errors?.['pattern'] && username.touched)
+        {
+          <span>Username can only contain letters and numbers.</span>
+        }
+        @if (username.errors?.['noSpaces'] && username.touched)
+        {
+          <span>Username cannot contain spaces.</span>
+        }
+        @if (username.errors?.['usernameTaken'] && username.touched)
+        {
+          <span>This username is already taken.</span>
+        }
+      </div>
+
+      @if (username.pending)
+      {
+        <span class="pending-message">Checking availability...</span>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" formControlName="email" />
+
+      <div class="error-messages">
+        @if (email.errors?.['required'] && email.touched)
+        {
+          <span>Email is required.</span>
+        }
+        @if (email.errors?.['email'] && email.touched)
+        {
+          <span>Please enter a valid email address.</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" formControlName="password" />
+
+      <div class="error-messages">
+        @if (password.errors?.['required'] && password.touched)
+        {
+          <span>Password is required.</span>
+        }
+        @if (password.errors?.['minlength'] && password.touched)
+        {
+          <span>Password must be at least 6 characters.</span>
+        }
+        @if (password.errors?.['minUppercase'] && password.touched)
+        {
+          <span>Password must contain at least one uppercase letter.</span>
+        }
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirmpassword" formControlName="confirmPassword" />
+
+      <div class="error-messages">
+        @if (confirmPassword.errors?.['required'] && confirmPassword.touched)
+        {
+          <span>Please confirm your password.</span>
+        }
+        @if (registrationForm.errors?.['passwordsMismatch'] && confirmPassword.touched)
+        {
+          <span>Password do not match.</span>
+        }
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" formControlName="age" />
+
+      <div class="error-messages">
+        @if (age.errors?.['required'] && age.touched)
+        {
+          <span>Please enter a valid age.</span>
+        }
+        @if (age.errors?.['min'] && age.touched)
+        {
+          <span>You must be at least 18 years old.</span>
+        }
+        @if (age.errors?.['max'] && age.touched)
+        {
+          <span>Please enter a valid age. Max is 120.</span>
+        }
+      </div>
+    </div>
+
+
+    <div class="address-section">
+      <h3>Address <span class="optional-label">(optional)</span></h3>
+
+      <div formGroupName="address">
+
+        <div class="form-group">
+          <label for="street">Street</label>
+          <input type="text" id="street" formControlName="street" />
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" formControlName="city" />
+        </div>
+
+        <div class="form-group">
+          <label for="state">State</label>
+          <input type="text" id="state" formControlName="state" />
+        </div>
+
+        <div class="form-group">
+          <label for="zipcode">Zip Code</label>
+          <input type="text" id="zipcode" formControlName="zipCode" />
+
+          <div class="error-messages">
+            @if (zipCode.errors?.['pattern'] && zipCode.touched)
+            {
+              <span>Zip code must contain only numbers.</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group" class="phone-numbers-section">
+      <h3>Phone Numbers</h3>
+      <div formArrayName="phoneNumbers">
+        @for (control of phoneNumbers.controls; track control)
+        {
+          <div class="phone-number-row">
+            <input type="tel" [formControlName]="$index" />
+            <button type="button" (click)="removePhoneNumber($index)">Remove</button>
+          </div>
+        }
+      </div>
+      <button type="button" (click)="addPhoneNumber()">Add Phone Number</button>
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <pre>
+{{registrationForm.value | json}}
+  </pre>
+</div>

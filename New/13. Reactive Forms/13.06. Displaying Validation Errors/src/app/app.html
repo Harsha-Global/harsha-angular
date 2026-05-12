@@ -1,0 +1,59 @@
+<div class="container">
+  <h1>Registration Form</h1>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" formControlName="username" />
+
+      <div class="error-messages">
+        @if (username.errors?.['required'] && username.touched)
+        {
+          <span>Username is required.</span>
+        }
+        @if (username.errors?.['minlength'] && username.touched)
+        {
+          <span>Username must be at least 3 characters.</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" formControlName="email" />
+
+      <div class="error-messages">
+        @if (email.errors?.['required'] && email.touched)
+        {
+          <span>Email is required.</span>
+        }
+        @if (email.errors?.['email'] && email.touched)
+        {
+          <span>Please enter a valid email address.</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" formControlName="password" />
+
+      <div class="error-messages">
+        @if (password.errors?.['required'] && password.touched)
+        {
+          <span>Password is required.</span>
+        }
+        @if (password.errors?.['minlength'] && password.touched)
+        {
+          <span>Password must be at least 6 characters.</span>
+        }
+      </div>
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <pre>
+{{registrationForm.value | json}}
+  </pre>
+</div>

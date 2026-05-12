@@ -1,0 +1,236 @@
+.container
+{
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1
+{
+  margin: 0 0 24px 0;
+  font-size: 24px;
+  color: #1a1a2e;
+}
+
+.form-group
+{
+  margin-bottom: 16px;
+}
+
+.form-group label
+{
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.form-group input
+{
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.form-group input:focus
+{
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+button[type="submit"]
+{
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+button[type="submit"]:hover
+{
+  background-color: #2563eb;
+}
+
+pre
+{
+  margin-top: 24px;
+  padding: 16px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #334155;
+  overflow-x: auto;
+}
+
+
+.error-messages
+{
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+input.ng-invalid.ng-touched
+{
+  border-color: #dc2626;
+}
+
+.pending-message
+{
+  color: #6b7280;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+
+
+.phone-numbers-section
+{
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.phone-numbers-section h3
+{
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #334155;
+}
+
+.phone-number-row
+{
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.phone-number-row input
+{
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+
+.phone-number-row input:focus
+{
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.phone-number-row button
+{
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #dc2626;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.phone-number-row button:hover
+{
+  background-color: #fee2e2;
+}
+
+.phone-numbers-section > button
+{
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #3b82f6;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.phone-numbers-section > button:hover
+{
+  background-color: #dbeafe;
+}
+
+
+
+.address-section
+{
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.address-section h3
+{
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #334155;
+}
+
+.optional-label
+{
+  font-size: 12px;
+  font-weight: normal;
+  color: #94a3b8;
+}
+
+
+.action-buttons
+{
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.action-buttons button
+{
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #3b82f6;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.action-buttons button:hover
+{
+  background-color: #dbeafe;
+}
+
+
+.char-count
+{
+  display: block;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+
+input:disabled
+{
+  background-color: #bbbbbb;
+  opacity: 0.7;
+  cursor: not-allowed;
+}

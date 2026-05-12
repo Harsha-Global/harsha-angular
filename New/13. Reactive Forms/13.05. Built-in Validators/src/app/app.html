@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Registration Form</h1>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" formControlName="username" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" formControlName="password" />
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <pre>
+{{registrationForm.value | json}}
+  </pre>
+</div>
