@@ -1,0 +1,98 @@
+<mat-toolbar class="primary-toolbar">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>Task Flow</span>
+
+  <span class="spacer"></span>
+
+  <button mat-icon-button>
+    <mat-icon>notifications</mat-icon>
+  </button>
+
+  <button mat-icon-button>
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="over" #sidenav>
+    <button mat-button class="nav-item">
+      <mat-icon>dashboard</mat-icon>
+      Dashboard
+    </button>
+    <button mat-button class="nav-item">
+      <mat-icon>check_circle</mat-icon>
+      My Tasks
+    </button>
+    <button mat-button class="nav-item">
+      <mat-icon>calendar_today</mat-icon>
+      Calendar
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button class="nav-item">
+      <mat-icon>settings</mat-icon>
+      Settings
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content">
+      <h1>Welcome to Task Flow</h1>
+
+      <button mat-flat-button (click)="openConfirmDialog()" class="warn">Delete Task</button>
+
+      <section class="demo-section">
+        <h2>Progress Spinner</h2>
+
+        <div class="example-row">
+          <div class="example-item">
+            <h3>Indeterminate</h3>
+            <mat-spinner></mat-spinner>
+          </div>
+        </div>
+
+        <div class="example-row">
+          <div class="example-item">
+            <h3>Warning Spinner</h3>
+            <mat-spinner [diameter]="40" class="warn-spinner"></mat-spinner>
+          </div>
+        </div>
+
+        <div class="example-row">
+          <div class="example-item">
+            <h3>Determinate (65%)</h3>
+            <mat-progress-spinner mode="determinate" [value]="65" [diameter]="40" [strokeWidth]="8"></mat-progress-spinner>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-section">
+        <h2>Progress Bar</h2>
+
+        <div class="example-item">
+          <h3>Indeterminate</h3>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+
+        <div class="example-item">
+          <h3>Determinate</h3>
+          <mat-progress-bar mode="determinate" [value]="40" class="accent-bar"></mat-progress-bar>
+        </div>
+
+        <div class="example-item">
+          <h3>Buffer (35% played / 60% buffered)</h3>
+          <mat-progress-bar mode="buffer" [value]="35" [bufferValue]="60"></mat-progress-bar>
+        </div>
+
+        <div class="example-item">
+          <h3>Query</h3>
+          <mat-progress-bar mode="query"></mat-progress-bar>
+        </div>
+      </section>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

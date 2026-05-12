@@ -1,0 +1,49 @@
+<mat-toolbar class="primary-toolbar">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>Task Flow</span>
+
+  <span class="spacer"></span>
+
+  <button mat-icon-button>
+    <mat-icon>notifications</mat-icon>
+  </button>
+
+  <button mat-icon-button>
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="over" #sidenav>
+    <button mat-button class="nav-item">
+      <mat-icon>dashboard</mat-icon>
+      Dashboard
+    </button>
+    <button mat-button class="nav-item">
+      <mat-icon>check_circle</mat-icon>
+      My Tasks
+    </button>
+    <button mat-button class="nav-item">
+      <mat-icon>calendar_today</mat-icon>
+      Calendar
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button class="nav-item">
+      <mat-icon>settings</mat-icon>
+      Settings
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content">
+      <h1>Welcome to Task Flow</h1>
+
+      <button mat-flat-button (click)="openConfirmDialog()" class="warn">Delete Task</button>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
