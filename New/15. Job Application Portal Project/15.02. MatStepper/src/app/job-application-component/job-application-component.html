@@ -1,0 +1,36 @@
+<mat-stepper orientation="horizontal" #stepper linear>
+ <mat-step label="Personal Information" [stepControl]="personalInfoForm">
+  <p>Personal information form fields will go here.</p>
+
+  <div class="step-actions">
+   <button matButton matStepperNext>Next</button>
+  </div>
+ </mat-step>
+
+ <mat-step label="Professional Details" [stepControl]="professionalDetailsForm">
+  <p>Professional details form fields will go here.</p>
+
+  <div class="step-actions">
+   <button matButton matStepperPrevious>Back</button>
+   <button matButton matStepperNext>Next</button>
+  </div>
+ </mat-step>
+
+ <mat-step label="Job Preferences" [stepControl]="jobPreferencesForm">
+  <p>Job preferences form fields will go here.</p>
+
+  <div class="step-actions">
+   <button matButton matStepperPrevious>Back</button>
+   <button matButton matStepperNext>Next</button>
+  </div>
+ </mat-step>
+
+ <mat-step label="Review" [stepControl]="reviewForm">
+  <p>Review your application before submitting.</p>
+
+  <div class="step-actions">
+   <button matButton matStepperPrevious>Back</button>
+   <button matButton="filled" >Submit</button>
+  </div>
+ </mat-step>
+</mat-stepper>

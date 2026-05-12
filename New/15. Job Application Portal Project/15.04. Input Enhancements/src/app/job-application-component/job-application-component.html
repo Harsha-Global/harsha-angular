@@ -1,0 +1,89 @@
+<mat-stepper orientation="horizontal" #stepper linear>
+ <mat-step label="Personal Information" [stepControl]="personalInfoForm">
+  <form [formGroup]="personalInfoForm">
+   <mat-form-field class="form-field">
+    <mat-label>First Name</mat-label>
+    <mat-icon matPrefix>person</mat-icon>
+    <input matInput type="text" formControlName="firstName" name="firstName" />
+
+    @if (personalInfoForm.get('firstName')?.value)
+    {
+     <button matIconButton matSuffix type="button" (click)="clearField('firstName')">
+      <mat-icon>close</mat-icon>
+     </button>
+    }
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Last Name</mat-label>
+    <mat-icon matPrefix>person</mat-icon>
+    <input matInput type="text" formControlName="lastName" name="lastName" />
+
+    @if (personalInfoForm.get('lastName')?.value)
+    {
+     <button matIconButton matSuffix type="button" (click)="clearField('lastName')">
+      <mat-icon>close</mat-icon>
+     </button>
+    }
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Email</mat-label>
+    <mat-icon matPrefix>mail</mat-icon>
+    <input matInput type="email" formControlName="email" name="email" />
+
+    @if (personalInfoForm.get('email')?.value)
+    {
+     <button matIconButton matSuffix type="button" (click)="clearField('email')">
+      <mat-icon>close</mat-icon>
+     </button>
+    }
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Phone Number</mat-label>
+    <mat-icon matPrefix>phone</mat-icon>
+    <input matInput type="tel" formControlName="phone" name="phone" maxlength="10" #phoneInput />
+
+    @if (personalInfoForm.get('phone')?.value)
+    {
+     <button matIconButton matSuffix type="button" (click)="clearField('phone')">
+      <mat-icon>close</mat-icon>
+     </button>
+    }
+    <mat-hint>Enter 10-digit phone number</mat-hint>
+    <mat-hint align="end">{{phoneInput.value.length}} / 10</mat-hint>
+   </mat-form-field>
+  </form>
+  <div class="step-actions">
+   <button matButton matStepperNext>Next</button>
+  </div>
+ </mat-step>
+
+ <mat-step label="Professional Details" [stepControl]="professionalDetailsForm">
+  <p>Professional details form fields will go here.</p>
+
+  <div class="step-actions">
+   <button matButton matStepperPrevious>Back</button>
+   <button matButton matStepperNext>Next</button>
+  </div>
+ </mat-step>
+
+ <mat-step label="Job Preferences" [stepControl]="jobPreferencesForm">
+  <p>Job preferences form fields will go here.</p>
+
+  <div class="step-actions">
+   <button matButton matStepperPrevious>Back</button>
+   <button matButton matStepperNext>Next</button>
+  </div>
+ </mat-step>
+
+ <mat-step label="Review" [stepControl]="reviewForm">
+  <p>Review your application before submitting.</p>
+
+  <div class="step-actions">
+   <button matButton matStepperPrevious>Back</button>
+   <button matButton="filled" >Submit</button>
+  </div>
+ </mat-step>
+</mat-stepper>
