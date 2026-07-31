@@ -1,0 +1,114 @@
+<h1>Applications</h1>
+<div class="filters-bar">
+ <mat-form-field class="search-field">
+  <mat-label>Search applications</mat-label>
+  <mat-icon matPrefix>search</mat-icon>
+  <input type="text" matInput [formControl]="searchControl" />
+ </mat-form-field>
+
+ <mat-form-field class="status-field">
+  <mat-label>Filter by status</mat-label>
+  <mat-select [formControl]="statusFilter">
+   <mat-option value="">All</mat-option>
+   @for (status of statusOptions; track status)
+   {
+    <mat-option [value]="status">{{status}}</mat-option>
+   }
+  </mat-select>
+ </mat-form-field>
+</div>
+
+<div class="actions-bar">
+ @if (selection.hasValue())
+ {
+  <button matButton="filled" (click)="shortlistSelected()">
+   Shortlist Selected ({{selection.selected.length}})
+  </button>
+ }
+</div>
+
+<app-dashboard-card title="Application Statistics">
+ <app-application-summary [totalCount]="totalCount" [filteredCount]="filteredCount"></app-application-summary>
+</app-dashboard-card>
+
+<table mat-table [dataSource]="dataSource" matSort>
+
+ <ng-container matColumnDef="select">
+  <th mat-header-cell *matHeaderCellDef>
+   <mat-checkbox [checked]="selection.hasValue() && isAllSelected" [indeterminate]="selection.hasValue() && !isAllSelected()" (change)="toggleAllRows($event.checked)"></mat-checkbox>
+  </th>
+  <td mat-cell *matCellDef="let row">
+   <mat-checkbox [checked]="selection.isSelected(row)" (change)="selection.toggle(row)" (click)="$event.stopPropagation()"></mat-checkbox>
+  </td>
+ </ng-container>
+
+ <ng-container matColumnDef="id">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+  <td mat-cell *matCellDef="let application">{{application.id}}</td>
+ </ng-container>
+
+ <ng-container matColumnDef="firstName">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+  <td mat-cell *matCellDef="let application">{{application.firstName}}</td>
+ </ng-container>
+
+ <ng-container matColumnDef="lastName">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+  <td mat-cell *matCellDef="let application">{{application.lastName}}</td>
+ </ng-container>
+
+ <ng-container matColumnDef="email">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+  <td mat-cell *matCellDef="let application">{{application.email}}</td>
+ </ng-container>
+
+ <ng-container matColumnDef="position">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+  <td mat-cell *matCellDef="let application">{{application.position}}</td>
+ </ng-container>
+
+ <ng-container matColumnDef="status">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+  <td mat-cell *matCellDef="let application">{{application.status}}</td>
+ </ng-container>
+
+ <ng-container matColumnDef="appliedDate">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Applied On</th>
+  <td mat-cell *matCellDef="let application">{{application.appliedDate | date: 'mediumDate'}}</td>
+ </ng-container>
+
+ <ng-container matColumnDef="actions">
+  <th mat-header-cell *matHeaderCellDef>Actions</th>
+  
+  <td mat-cell *matCellDef="let row">
+   <button matIconButton title="View" (click)="viewApplication(row)">
+    <mat-icon>visibility</mat-icon>
+   </button>
+
+   <button matIconButton title="Mark Reviewed" (click)="markReviewed(row)">
+    <mat-icon>check_circle</mat-icon>
+   </button>
+
+   <button matIconButton title="Delete" (click)="deleteApplication(row)" class="delete-button">
+    <mat-icon>delete</mat-icon>
+   </button>
+  </td>
+ </ng-container>
+
+ <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+ <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+ <tr *matNoDataRow>
+  <td [attr.colspan]="displayedColumns.length">
+   <div class="empty-state">
+    <mat-icon>inbox</mat-icon>
+    <p>No applications found</p>
+    <p class="empty-helper">Try clearing the filters or check back later</p>
+   </div>
+  </td>
+ </tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" [pageSize]="5" showFirstLastButtons="true">
+</mat-paginator>

@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Application Details</h2>
+
+<mat-dialog-content>
+ <div class="detail-row">
+  <span class="detail-label">ID</span>
+  <span class="detail-value">{{application.id}}</span>
+ </div>
+
+ <div class="detail-row">
+  <span class="detail-label">First Name</span>
+  <span class="detail-value">{{application.firstName}}</span>
+ </div>
+
+ <div class="detail-row">
+  <span class="detail-label">Last Name</span>
+  <span class="detail-value">{{application.lastName}}</span>
+ </div>
+
+ <div class="detail-row">
+  <span class="detail-label">Email</span>
+  <span class="detail-value">{{application.email}}</span>
+ </div>
+
+ <div class="detail-row">
+  <span class="detail-label">Position</span>
+  <span class="detail-value">{{application.position}}</span>
+ </div>
+
+ <div class="detail-row">
+  <span class="detail-label">Status</span>
+  <span class="detail-value">{{application.status}}</span>
+ </div>
+
+ <div class="detail-row">
+  <span class="detail-label">Applied On</span>
+  <span class="detail-value">{{application.appliedDate | date: 'mediumDate'}}</span>
+ </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+ <button matButton mat-dialog-close>Close</button>
+</mat-dialog-actions>

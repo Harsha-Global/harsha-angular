@@ -1,0 +1,15 @@
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.detail-label {
+  color: var(--mat-sys-on-surface-variant);
+  font-weight: 500;
+}
+
+.detail-value {
+  color: var(--mat-sys-on-surface);
+  text-align: right;
+}
