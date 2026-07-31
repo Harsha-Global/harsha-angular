@@ -1,0 +1,24 @@
+<mat-toolbar class="primary-toolbar">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Job Portal</span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="over" #sidenav>
+    <button class="nav-item" mat-button routerLink="/apply" (click)="sidenav.close()">
+      <mat-icon>description</mat-icon>
+      Apply for Job
+    </button>
+
+    <button class="nav-item" mat-button routerLink="/admin/applications" (click)="sidenav.close()">
+      <mat-icon>people</mat-icon>
+      View Applications
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

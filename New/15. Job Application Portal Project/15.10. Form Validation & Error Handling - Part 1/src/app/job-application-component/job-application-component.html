@@ -1,0 +1,247 @@
+<mat-stepper orientation="horizontal" #stepper linear>
+ <mat-step label="Personal Information" [stepControl]="personalInfoForm">
+  <form [formGroup]="personalInfoForm">
+   <mat-form-field class="form-field">
+    <mat-label>First Name</mat-label>
+    <mat-icon matPrefix>person</mat-icon>
+    <input matInput type="text" formControlName="firstName" name="firstName" />
+
+    @if (personalInfoForm.get('firstName')?.value)
+    {
+     <button matIconButton matSuffix type="button" (click)="clearField('firstName')">
+      <mat-icon>close</mat-icon>
+     </button>
+    }
+
+    @if (personalInfoForm.get('firstName')?.hasError('required'))
+    {
+     <mat-error>First name is required</mat-error>
+    }
+
+    @if (personalInfoForm.get('firstName')?.hasError('minlength'))
+    {
+     <mat-error>First name must be at least 2 characters.</mat-error>
+    }
+
+    @if (personalInfoForm.get('firstName')?.hasError('maxlength'))
+    {
+     <mat-error>First name cannot exceed 50 characters.</mat-error>
+    }
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Last Name</mat-label>
+    <mat-icon matPrefix>person</mat-icon>
+    <input matInput type="text" formControlName="lastName" name="lastName" />
+
+    @if (personalInfoForm.get('lastName')?.value)
+    {
+     <button matIconButton matSuffix type="button" (click)="clearField('lastName')">
+      <mat-icon>close</mat-icon>
+     </button>
+    }
+
+    @if (personalInfoForm.get('lastName')?.hasError('required'))
+    {
+     <mat-error>Last name is required</mat-error>
+    }
+
+    @if (personalInfoForm.get('lastName')?.hasError('minlength'))
+    {
+     <mat-error>Last name must be at least 2 characters.</mat-error>
+    }
+
+    @if (personalInfoForm.get('lastName')?.hasError('maxlength'))
+    {
+     <mat-error>Last name cannot exceed 50 characters.</mat-error>
+    }
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Email</mat-label>
+    <mat-icon matPrefix>mail</mat-icon>
+    <input matInput type="email" formControlName="email" name="email" />
+
+    @if (personalInfoForm.get('email')?.value)
+    {
+     <button matIconButton matSuffix type="button" (click)="clearField('email')">
+      <mat-icon>close</mat-icon>
+     </button>
+    }
+
+    @if (personalInfoForm.get('email')?.hasError('required'))
+    {
+     <mat-error>Email is required</mat-error>
+    }
+
+    @if (personalInfoForm.get('email')?.hasError('email'))
+    {
+     <mat-error>Please enter a valid email address.</mat-error>
+    }
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Phone Number</mat-label>
+    <mat-icon matPrefix>phone</mat-icon>
+    <input matInput type="tel" formControlName="phone" name="phone" maxlength="10" #phoneInput />
+
+    @if (personalInfoForm.get('phone')?.value)
+    {
+     <button matIconButton matSuffix type="button" (click)="clearField('phone')">
+      <mat-icon>close</mat-icon>
+     </button>
+    }
+    <mat-hint>Enter 10-digit phone number</mat-hint>
+    <mat-hint align="end">{{phoneInput.value.length}} / 10</mat-hint>
+
+    @if (personalInfoForm.get('phone')?.hasError('required'))
+    {
+     <mat-error>Phone number is required</mat-error>
+    }
+
+    @if (personalInfoForm.get('phone')?.hasError('pattern'))
+    {
+     <mat-error>Please enter exactly 10 digits.</mat-error>
+    }
+   </mat-form-field>
+  </form>
+  <div class="step-actions">
+   <button matButton matStepperNext>Next</button>
+  </div>
+ </mat-step>
+
+ <mat-step label="Professional Details" [stepControl]="professionalDetailsForm">
+  <form [formGroup]="professionalDetailsForm">
+
+   <mat-form-field class="form-field">
+    <mat-label>Current Role</mat-label>
+    <mat-icon matPrefix>work</mat-icon>
+    <mat-select formControlName="currentRole">
+     @for (role of roles; track role)
+     {
+      <mat-option [value]="role">{{role}}</mat-option>
+     }
+    </mat-select>
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Years of Experience</mat-label>
+    <mat-icon matPrefix>schedule</mat-icon>
+    <mat-select formControlName="experience">
+     @for (level of experienceLevels; track level)
+     {
+      <mat-option [value]="level">{{level}}</mat-option>
+     }
+    </mat-select>
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Technical Skills</mat-label>
+    <mat-icon matPrefix>code</mat-icon>
+    <mat-select formControlName="skills" multiple>
+     @for (group of skillsGroups; track group.category)
+     {
+      <mat-optgroup [label]="group.category">
+       @for (skill of group.skills; track skill)
+       {
+        <mat-option [value]="skill">{{skill}}</mat-option>
+       }
+      </mat-optgroup>
+     }
+    </mat-select>
+   </mat-form-field>
+  </form>
+
+  <div class="step-actions">
+   <button matButton matStepperPrevious>Back</button>
+   <button matButton matStepperNext>Next</button>
+  </div>
+ </mat-step>
+
+ <mat-step label="Job Preferences" [stepControl]="jobPreferencesForm">
+  <form [formGroup]="jobPreferencesForm">
+   <mat-form-field class="form-field">
+    <mat-label>Preferred Location</mat-label>
+    <mat-icon matPrefix>location_on</mat-icon>
+
+    <input type="text" matInput [matAutocomplete]="auto" formControlName="preferredLocation" />
+
+    <mat-autocomplete #auto>
+     @for (city of filteredCities | async; track city)
+     {
+      <mat-option [value]="city">{{city}}</mat-option>
+     }
+    </mat-autocomplete>
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Available Start Date</mat-label>
+    <mat-icon matPrefix>event</mat-icon>
+    <input matInput formControlName="availableStartDate" [matDatepicker]="picker" [min]="today" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+   </mat-form-field>
+
+   <mat-form-field class="form-field">
+    <mat-label>Interview Availability</mat-label>
+    <mat-icon matPrefix>date_range</mat-icon>
+
+    <mat-date-range-input formGroupName="interviewAvailability" [rangePicker]="rangePicker" [min]="today">
+
+    <input matStartDate formControlName="start" placeholder="Start Date" />
+
+     <input matEndDate formControlName="end" placeholder="End Date" />
+    </mat-date-range-input>
+
+    <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+
+    <mat-date-range-picker #rangePicker></mat-date-range-picker>
+   </mat-form-field>
+
+   <div class="field-section">
+    <label class="section-label">Employment Types</label>
+    <div class="options-group">
+     @for (type of employmentTypes; track type)
+     {
+      <mat-checkbox [checked]="jobPreferencesForm.get('employmentTypes')?.value?.includes(type)" (change)="onEmploymentTypeChange(type, $event.checked)">
+       {{type}}
+      </mat-checkbox>
+     }
+    </div>
+   </div>
+
+   <div class="field-section">
+    <label class="section-label">Willing to Relocate</label>
+    <mat-radio-group formControlName="relocation" class="options-group">
+     @for (option of relocationOptions; track option.value)
+     {
+      <mat-radio-button [value]="option.value">
+       {{option.label}}
+      </mat-radio-button>
+     }
+    </mat-radio-group>
+   </div>
+
+
+   <div class="field-section">
+    <mat-slide-toggle formControlName="emailNotifications">
+     Send me email notifications about new job openings
+    </mat-slide-toggle>
+   </div>
+  </form>
+
+  <div class="step-actions">
+   <button matButton matStepperPrevious>Back</button>
+   <button matButton matStepperNext>Next</button>
+  </div>
+ </mat-step>
+
+ <mat-step label="Review" [stepControl]="reviewForm">
+  <p>Review your application before submitting.</p>
+
+  <div class="step-actions">
+   <button matButton matStepperPrevious>Back</button>
+   <button matButton="filled" >Submit</button>
+  </div>
+ </mat-step>
+</mat-stepper>
